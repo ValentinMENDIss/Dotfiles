@@ -1,8 +1,9 @@
 # BSPWM-DOTFILES
 
+
 ### Light and Easy to use
 
-Btw, if you want you can modify it :)
+Btw, if you want tp you can modify it :)
 
 
 ## Information
@@ -15,7 +16,14 @@ to watch on youtube and anyone can find. Some things were a little
 modified, so it suits my needs best. 
 
 
-Thanks for reading :D
+## How To Install?? 
+
+To install you can run my script "install.sh" that is in config folder,
+or you can also install it manually if you want to :)
+
+Right now the script is made only for Debian/Ubuntu Based Distributions, 
+but later I will rewrite install scrip to be working on a lot of Distributions
 
 
 
+Thanks For Reading :D

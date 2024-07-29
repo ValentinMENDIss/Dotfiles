@@ -137,6 +137,8 @@ super + q
 
 ## Changing the Volume ##
 
+alt + c
+    rofi -show calc -modi calc -no-show-match -no-sort -automatic-save-to-history
 
 # Increase volume
 super + F3

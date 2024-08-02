@@ -2,57 +2,75 @@
 
 sudo apt install bspwm
 if type -p bspwm > /dev/null; then
-    echo "bspwm Installed successfully"
+    echo "bspwm INSTALLED SUCCESSFULLY"
 else
-  echo "bspwm FAILED TO INSTALL :( OR is already Installed"
+  echo "bspwm FAILED TO INSTALL :( OR IS ALREADY INSTALLED"
 fi
 
 sudo apt install dunst
 if type -p dunst > /dev/null; then     
-  echo "dunst Installed successfully" 
+  echo "dunst INSTALLED SUCCESSFULLY" 
 else    
-  echo "dunst FAILED TO INSTALL :( OR is already Installed"
+  echo "dunst FAILED TO INSTALL :( OR IS ALREADY INSTALLED"
 fi
 
 sudo apt install nitrogen
 if type -p nitrogen > /dev/null; then     
-  echo "nitrogen Installed successfully" 
+  echo "nitrogen INSTALLED SUCCESSFULLY" 
 else    
-  echo "nitrogen FAILED TO INSTALL :( OR is already Installed"
+  echo "nitrogen FAILED TO INSTALL :( OR IS ALREADY INSTALLED"
 fi
 
 sudo apt install picom
 if type -p picom > /dev/null; then     
-  echo "picom Installed successfully" 
+  echo "picom INSTALLED SUCCESSFULLY" 
 else    
-  echo "picom FAILED TO INSTALL :( OR is already Installed"
+  echo "picom FAILED TO INSTALL :( OR IS ALREADY INSTALLED"
 fi
 
 sudo apt install polybar
 if type -p polybar > /dev/null; then
-  echo "polybar Installed successfully" 
+  echo "polybar INSTALLED SUCCESSFULLY" 
 else    
-  echo "polybar FAILED TO INSTALL :( OR is already Installed"
+  echo "polybar FAILED TO INSTALL :( OR IS ALREADY INSTALLED"
 fi
 
 sudo apt install sxhkd
 if type -p sxhkd > /dev/null; then     
-  echo "sxhkd Installed successfully" 
+  echo "sxhkd INSTALLED SUCCESSFULLY" 
 else    
-  echo "sxhkd FAILED TO INSTALL :( OR is already Installed"
+  echo "sxhkd FAILED TO INSTALL :( OR IS ALREADY INSTALLED"
 fi
 
 
-mkdir ~/.config/bspwm
-mkdir ~/.config/dunst
-mkdir ~/.config/nitrogen
-mkdir ~/.config/picom
-mkdir ~/.config/polybar
-mkdir ~/.config/sxhkd
+# Creating Folders and copying the content
 
-cp bspwm/bspwmrc ~/.config/bspwm/
-cp dunst/dunstrc ~/.config/dunst/
-cp nitrogen/nitrogen.cfg ~/.config/nitrogen/
-cp picom/picom.conf ~/.config/picom/
-cp polybar/config.ini ~/.config/polybar/
-cp sxhkd/sxhkdrc ~/.config/sxhkd/
+if [ ! -d ~/.config/bspwm ]; then
+  mkdir -p ~/.config/bspwm
+fi
+cp -R bspwm/bspwmrc ~/.config/bspwm
+
+if [ ! -d ~/.config/dunst ]; then
+  mkdir -p ~/.config/dunst
+fi
+cp -R dunst/dunstrc ~/.config/dunst
+
+if [ ! -d ~/.config/nitrogen ]; then
+  mkdir -p ~/.config/nitrogen
+fi
+cp -R nitrogen/nitrogen.cfg ~/.config/nitrogen
+
+if [ ! -d ~/.config/picom ]; then
+  mkdir -p ~/.config/picom 
+fi
+cp -R picom/picom.conf ~/.config/picom/
+
+if [ ! -d ~/.config/polybar ]; then
+  mkdir -p ~/.config/polybar 
+fi
+cp -R polybar/config.ini ~/.config/polybar/
+
+if [ ! -d ~/.config/sxhkd ]; then
+  mkdir -p ~/.config/sxhkd 
+fi
+cp -R sxhkd/sxhkdrc ~/.config/sxhkd/

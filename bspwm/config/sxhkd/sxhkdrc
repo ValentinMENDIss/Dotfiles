@@ -130,7 +130,7 @@ super + w
 
 # filemanager
 super + e
-	thunar
+	yazi
 
 super + q
 	rofi -show window

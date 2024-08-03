@@ -1,4 +1,14 @@
-#! /bin/sh
+#!/bin/bash
+
+# VARIABLES #
+
+# Repository URL
+ROFI_CALC_URL="https://github.com/svenstaro/rofi-calc.git"
+# Target Directory
+ROFI_CALC_DIR="$HOME/Documents/rofi-calc"
+
+
+# Installing Packages
 
 sudo apt install bspwm
 if type -p bspwm > /dev/null; then
@@ -41,6 +51,32 @@ if type -p sxhkd > /dev/null; then
 else    
   echo "sxhkd FAILED TO INSTALL :( OR IS ALREADY INSTALLED"
 fi
+
+sudo apt install rofi
+if type -p rofi > /dev/null; then
+  echo "rofi INSTALLED SUCCESSFULLY"
+else
+  echo "rofi FAILED TO INSTALLED :( OR IS ALREADY INSTALLED"
+fi
+
+sudo apt install rofi-dev qalc libtool libtool-bin autoconf pkg-config
+if type -p rofi-dev qalc libtool libtool-bin autoconf pkg-config > /dev/null; then
+  echo "rofi-calc INSTALLED SUCCESSFULLY"
+else
+  echo "rofi-calc FAILED TO INSTALLED :( OR IS ALREADY INSTALLED"
+fi
+
+# Installing 'rofi-calc'
+git clone "$ROFI_CALC_URL" "$ROFI_CALC_DIR"
+cd "$ROFI_CALC_DIR"
+cd rofi-calc/
+mkdir m4
+autoreconf -i
+mkdir build
+cd build/
+../configure
+make
+# make install
 
 
 # Creating Folders and copying the content

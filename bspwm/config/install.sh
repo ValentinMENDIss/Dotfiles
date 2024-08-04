@@ -66,19 +66,6 @@ else
   echo "rofi-calc FAILED TO INSTALLED :( OR IS ALREADY INSTALLED"
 fi
 
-# Installing 'rofi-calc'
-git clone "$ROFI_CALC_URL" "$ROFI_CALC_DIR"
-cd "$ROFI_CALC_DIR"
-cd rofi-calc/
-mkdir m4
-autoreconf -i
-mkdir build
-cd build/
-../configure
-make
-# make install
-
-
 # Creating Folders and copying the content
 
 if [ ! -d ~/.config/bspwm ]; then

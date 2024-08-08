@@ -158,8 +158,3 @@ super + F3
 super + F2
 	amixer -q sset Master 5%-
 
-
-# Increase brightness 
-
-
-# Decrease brightness

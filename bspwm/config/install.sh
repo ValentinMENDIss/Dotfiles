@@ -91,9 +91,9 @@ cp -R picom/picom.conf ~/.config/picom/
 if [ ! -d ~/.config/polybar ]; then
   mkdir -p ~/.config/polybar 
 fi
-cp -R polybar/config.ini ~/.config/polybar/
+cp -R polybar/pc_version/config.ini ~/.config/polybar/
 
 if [ ! -d ~/.config/sxhkd ]; then
   mkdir -p ~/.config/sxhkd 
 fi
-cp -R sxhkd/sxhkdrc ~/.config/sxhkd/
+cp -R sxhkd/pc_version/sxhkdrc ~/.config/sxhkd/

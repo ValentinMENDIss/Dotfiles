@@ -22,8 +22,13 @@ To install you can run my script "install.sh" that is in config folder,
 or you can also install it manually if you want to :)
 
 Right now the script is made only for Debian/Ubuntu Based Distributions, 
-but later I will rewrite install scrip to be working on a lot of Distributions
+but later I will rewrite install scrip to be working on a lot of other Distributions
 
+### Don't Forget!!!
+Don't forget that in some folders there are laptop or pc versions of config files. Choose one and move/copy it in your needed folder
+(example: ~/.config/.../...)
+
+---
 
 
 Thanks For Reading :D

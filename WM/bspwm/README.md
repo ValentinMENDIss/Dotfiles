@@ -1,9 +1,12 @@
 # BSPWM-DOTFILES
 
+**Preview:**
+<img src="https://github.com/user-attachments/assets/75292354-2815-4f86-bdab-eeea5dfb5234">
+
 
 ### Light and Easy to use
 
-Btw, if you want tp you can modify it :)
+Btw, if you want to you can modify it :)
 
 
 ## Information

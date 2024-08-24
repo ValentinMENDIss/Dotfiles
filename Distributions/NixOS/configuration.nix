@@ -45,21 +45,20 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Enable the BSPWM Tiling Manager.
-  services.xserver.windowManager.bspwm.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+  services.xserver = {
+    enable = true;
+    autorun = false;
+    xkb.layout = "us";
+    xkb.options = "eurosign:e";
+    # Enable the Gnome Desktop Environment.
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+    # Enable the BSPWM Tiling Manager.
+    windowManager.bspwm.enable = true;
   };
 
+  services.displayManager.defaultSession = "none+bspwm";
+  
   # Configure console keymap
   console.keyMap = "uk";
 
@@ -119,6 +118,7 @@
   environment.systemPackages = with pkgs; [
     # CLI Tools
     neovim
+    neovide
     yazi
     zsh
     git
@@ -126,10 +126,12 @@
     kitty
     pfetch
     uwufetch
+    gum
 
     # GUI Applications
     librewolf
     vlc
+    flameshot
 
     # BSPWM  (WM)
     bspwm
@@ -141,6 +143,7 @@
     dunst
     picom
     rofi
+    brightnessctl
   ];
 
   fonts.packages = with pkgs; [

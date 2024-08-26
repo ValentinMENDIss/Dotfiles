@@ -127,11 +127,14 @@
     pfetch
     uwufetch
     gum
+    ttyper
 
     # GUI Applications
     librewolf
     vlc
     flameshot
+    discord
+    telegram-desktop
 
     # BSPWM  (WM)
     bspwm

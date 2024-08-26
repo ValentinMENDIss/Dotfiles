@@ -132,7 +132,7 @@ super + {Left,Down,Up,Right}
 
 # firefox
 super + w
-	firefox
+	librewolf
 
 # filemanager
 super + e
@@ -157,7 +157,7 @@ super + F2
 
 # Increase brightness
 super + F6
-    xbacklight +20
+    brightnessctl set 5%+
 # Decrease brightness
 super + F5
-    xbacklight -10
+    brightnessctl set 5%-

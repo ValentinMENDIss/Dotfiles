@@ -118,7 +118,6 @@
   environment.systemPackages = with pkgs; [
     # CLI Tools
     neovim
-    neovide
     yazi
     zsh
     git
@@ -129,12 +128,22 @@
     gum
     ttyper
 
+    # Tools (Drivers, etc...)
+    alsa-utils
+    lshw
+
+    # For fun :)
+    cmatrix
+    cowsay
+
     # GUI Applications
     librewolf
     vlc
     flameshot
     discord
     telegram-desktop
+    arduino-ide
+    sioyek
 
     # BSPWM  (WM)
     bspwm

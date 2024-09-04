@@ -147,7 +147,7 @@
 
     # Zsh customization tools
     zsh
-    zsh-powerlevel10k
+    bat
     thefuck
     spaceship-prompt
 
@@ -155,7 +155,6 @@
     # Tools (Drivers, etc...)
     alsa-utils
     lshw
-    ventoy
 
     # For fun :)
     cmatrix

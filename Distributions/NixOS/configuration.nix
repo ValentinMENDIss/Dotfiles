@@ -95,8 +95,24 @@
     };
   };
 
-  programs.zsh.enable = true;
+  programs = {
+    zsh = {
+      enable = true;
+      autosuggestions.enable = true;
+      zsh-autoenv.enable = true;
+      syntaxHighlighting.enable = true;
 
+      shellAliases = {
+        ll = "ls -l";
+        update = "sudo nixos-rebuild switch";
+      };
+      ohMyZsh = {
+        enable = true;
+        plugins = [ "git" "thefuck" ];
+
+      };
+    };
+};
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mendi = {
     isNormalUser = true;
@@ -119,7 +135,8 @@
     # CLI Tools
     neovim
     yazi
-    zsh
+    eza
+    fzf
     git
     btop
     kitty
@@ -128,9 +145,17 @@
     gum
     ttyper
 
+    # Zsh customization tools
+    zsh
+    zsh-powerlevel10k
+    thefuck
+    spaceship-prompt
+
+
     # Tools (Drivers, etc...)
     alsa-utils
     lshw
+    ventoy
 
     # For fun :)
     cmatrix

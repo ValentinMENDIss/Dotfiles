@@ -6,3 +6,5 @@ eval "$(fzf --zsh)"
 
 # Set up spaceship prompt for zsh
 source "$HOME/.zsh/spaceship/spaceship.zsh"
+
+alias -g cat="bat"

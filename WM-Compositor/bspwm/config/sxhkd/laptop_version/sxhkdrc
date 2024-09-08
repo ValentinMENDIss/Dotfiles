@@ -141,19 +141,20 @@ super + e
 super + q
 	rofi -show window
 
-## Changing the Volume ##
+alt + r
+    rofi -show run
 
 alt + c
     rofi -show calc -modi calc -no-show-match -no-sort -automatic-save-to-history
 
+## Changing the Volume ##
+
 # Increase volume
 super + F3
-	amixer -q sset Master 5%+
-
+	amixer set Master 5%+
 # Decrease volume
 super + F2
-	amixer -q sset Master 5%-
-
+	amixer set Master 5%-
 
 # Increase brightness
 super + F6

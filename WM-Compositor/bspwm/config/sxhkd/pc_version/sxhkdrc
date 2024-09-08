@@ -145,10 +145,13 @@ super + e
 super + q
 	rofi -show window
 
-## Changing the Volume ##
+alt + r
+    rofi -show run
 
 alt + c
     rofi -show calc -modi calc -no-show-match -no-sort -automatic-save-to-history
+
+## Changing the Volume ##
 
 # Increase volume
 super + F3
@@ -158,3 +161,4 @@ super + F3
 super + F2
 	amixer -q sset Master 5%-
 
+#

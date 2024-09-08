@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports =
@@ -15,6 +15,10 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
+
+  # Choosing Kernel version
+  boot.kernelPackages = pkgs.linuxPackages;
+
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -47,17 +51,20 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    autorun = false;
-    xkb.layout = "us";
-    xkb.options = "eurosign:e";
+    #autorun = false;
+    #xkb.layout = "us";
+    #xkb.options = "eurosign:e";
     # Enable the Gnome Desktop Environment.
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
     # Enable the BSPWM Tiling Manager.
     windowManager.bspwm.enable = true;
+
+    # Load nvidia driver for Xorg and Wayland
+    videoDrivers = [ "nvidia" "intel" ];
   };
 
-  services.displayManager.defaultSession = "none+bspwm";
+  #services.displayManager.defaultSession = "none+bspwm";
   
   # Configure console keymap
   console.keyMap = "uk";
@@ -65,34 +72,56 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
+  # Enable sound with pulseaudio.
+  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
   # Video support
   hardware = {
-    #  Most wayland compositors need this
-    nvidia.modesetting.enable = true;
     opengl = {
       enable = true;
       driSupport32Bit = true;
       driSupport = true;
     };
+  };
+
+  # Nvidia drivers/settings
+  hardware.nvidia = {
+    
+    # Modesetting is required
+    modesetting.enable = true;
+
+    # Use the Nvidia open source kernel module
+    open = false;
+
+    # Enable the Nvidia settings menu,
+    # accessible via 'nvidia-settings'
+    nvidiaSettings = true;
+   
+    # Power management for GPU (experimental)
+    powerManagement.enable = false;
+    # Turns of GPU when not in use (experimental, only new GPUs)
+    powerManagement.finegrained = false;
+
+
+
+    # Optionally, you may need to select the appropriate driver version for your specific GPU.
+    #package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+ 
+  # Only for laptops with hybrid graphics (e.g.: nvidia, intel)
+  hardware.nvidia.prime = {
+    sync.enable = true;
+
+    # Make sure to use the correct Bus ID values for your system! (CONVERT from hexadecimal to decimal)
+    # find the correct Bus ID values with this command: lshw -c display
+    intelBusId = "PCI:0:2:0";
+    nvidiaBusId = "PCI:1:0:0";
+    	# amdgpuBusId = "" # For AMD GPU
+
   };
 
   programs = {
@@ -159,8 +188,11 @@
     # For fun :)
     cmatrix
     cowsay
+    pipes
+    fortune
 
     # GUI Applications
+    davinci-resolve
     librewolf
     vlc
     flameshot
@@ -171,6 +203,10 @@
 
     # BSPWM  (WM)
     bspwm
+
+    # Wine Apps
+    wineWowPackages.stable
+    winetricks
 
     # WM
     polybar

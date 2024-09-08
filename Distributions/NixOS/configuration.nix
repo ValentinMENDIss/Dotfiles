@@ -51,9 +51,9 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    #autorun = false;
-    #xkb.layout = "us";
-    #xkb.options = "eurosign:e";
+    autorun = false;
+    xkb.layout = "us";
+    xkb.options = "eurosign:e";
     # Enable the Gnome Desktop Environment.
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;

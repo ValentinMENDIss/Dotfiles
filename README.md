@@ -8,10 +8,12 @@ These are Dotfiles that I use on/for my systems :)
   - bspwm    (Window-Tiling-Manager)
   - Hyprland (Compositor)
 
-### Distributions
-  - NixOS    (OS)
-
+### Linux Distributions
+  - NixOS    
+  - Gentoo   
 ---
+
+And even configuration files used by tools (cli-applications)
 
 You can find the initial path of files easily,
 just by looking at the folders name.

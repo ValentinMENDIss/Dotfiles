@@ -1,11 +1,8 @@
--- ~/nvim/lua/slydragonn/plugins/colorscheme.lua
-
 return {
-    "tiagovla/tokyodark.nvim",
-    lazy = false,
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
     config = function()
-        vim.cmd("colorscheme tokyodark")
+    vim.cmd("colorscheme catppuccin")
     end,
 }
-

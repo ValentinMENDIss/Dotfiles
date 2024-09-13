@@ -11,7 +11,6 @@ opt.number = true -- show line numbers
 opt.wrap = false -- do not wrap lines
 opt.cursorline = true -- highlight the line where the cursor is
 
-
 -- themes
 opt.termguicolors = false -- enable termguicolors for themes support
 opt.background = "dark" -- set colorschemes to dark/light

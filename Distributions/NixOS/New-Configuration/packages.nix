@@ -2,27 +2,37 @@
 
 {
   environment.systemPackages = with pkgs; [
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+
+    # CLI-Tools
+    neovim     
     wget
     git
-    librewolf
     uwuify
     uwufetch
     btop
     bat
+    pipes
+    unzip
+    ranger
+    cmatrix
+    cowsay
+
+    # Graphical Applications
+    librewolf
     vscodium
     kitty
+    sioyek
+    vlc
+    dia
+
+    # WM Apps # 
     wofi
     waybar
     swww
     dunst
-    pipes
-    unzip
-    ranger
-    vlc
-    sioyek
-    cmatrix
-    cowsay
-    dia
+    hyprlock
+    hypridle
+    brightnessctl
+
   ];
 }

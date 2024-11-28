@@ -32,6 +32,20 @@
 
   # Turning on Experimental Features
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  
+
+  # Turning on System Auto-Upgrade
+  system.autoUpgrade.enable = true;
+
+  # Configuring Nix Package-Manager
+  nix = {
+    # automatically collect garbage ( and delete old "snapshots")
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader = {

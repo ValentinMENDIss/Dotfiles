@@ -127,6 +127,10 @@
   # Enable Hyprland
   programs.hyprland.enable = true;
 
+  services.xserver = {
+    windowManager.windowmaker.enable = true;
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -154,5 +158,4 @@
   # networking.firewall.enable = false;
 
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }

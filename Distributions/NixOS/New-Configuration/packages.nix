@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-
+	
     # CLI-Tools
     neovim     
     wget
@@ -24,6 +24,7 @@
     sioyek
     vlc
     dia
+    godot_4
 
     # WM Apps # 
     wofi
@@ -33,6 +34,10 @@
     hyprlock
     hypridle
     brightnessctl
+    windowmaker
 
+    # Programming
+    python3		# needed in order to python be accessible without network connection :3
+    
   ];
 }

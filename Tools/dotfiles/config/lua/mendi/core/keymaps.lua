@@ -31,7 +31,3 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", {desc = "Open current buffer 
 
 -- nvimtree plugin
 keymap.set("n", "<leader>ee", "<cmd>Neotree<CR>", {desc = "Toggle file Explorer plugin"}) -- toggle file explorer
-
--- Telescope plugin (fuzzy finder)
-keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>", {desc = "Find files"}) -- find files
-keymap.set("n", "<leader>f", "<cmd>Telescope treesitter<CR>", {desc = "Find sections in code"}) -- find sections in code

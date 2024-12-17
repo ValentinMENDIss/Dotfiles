@@ -13,9 +13,10 @@
     bat
     pipes
     unzip
-    ranger
+    yazi
     cmatrix
     cowsay
+    appimage-run
 
     # Graphical Applications
     librewolf
@@ -25,6 +26,7 @@
     vlc
     dia
     godot_4
+    jetbrains.pycharm-community
 
     # WM Apps # 
     wofi
@@ -38,6 +40,6 @@
 
     # Programming
     python3		# needed in order to python be accessible without network connection :3
-    
+    gcc    
   ];
 }

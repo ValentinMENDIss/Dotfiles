@@ -4,42 +4,43 @@
   environment.systemPackages = with pkgs; [
 	
     # CLI-Tools
-    neovim     
-    wget
-    git
-    uwuify
-    uwufetch
-    btop
-    bat
-    pipes
-    unzip
-    yazi
+    neovim     				# text editor
+    wget	
+    git					
+    uwuify				# uwuify text :3
+    uwufetch				# system/hardware info application (fetch program)
+    btop				# task manager
+    bat					# cat - but prettier syntax
+    pipes				# cool screensaver :D
+    unzip				# unzipper for zip files
+    yazi				# terminal explorer
     cmatrix
-    cowsay
-    appimage-run
+    cowsay				
+    appimage-run			# script for running appimages on nixos
 
     # Graphical Applications
-    librewolf
-    vscodium
-    kitty
-    sioyek
-    vlc
-    dia
-    godot_4
-    jetbrains.pycharm-community
+    librewolf				# browser for privacy
+    vscodium				# ide for programming
+    kitty				# terminal (tty emulator)
+    sioyek				# pdf viewer
+    vlc					# video player
+    dia					# diagram utility
+    godot_4				# game engine
+    jetbrains.pycharm-community		# python ide
+    flameshot				# screenshot utility
 
     # WM Apps # 
-    wofi
-    waybar
-    swww
-    dunst
-    hyprlock
-    hypridle
-    brightnessctl
-    windowmaker
+    wofi				# app launcher
+    waybar				# taskbar
+    swww				# wallpaper utility
+    dunst				# notification daemon
+    hyprlock				# lock screen
+    hypridle				# idle 
+    brightnessctl			# configure brightness of the screen (for laptops)
+    windowmaker				# old-style window manager
 
     # Programming
-    python3		# needed in order to python be accessible without network connection :3
-    gcc    
+    python3				# needed in order to python be accessible without network connection :3
+    gcc    				# compiler for C programming language
   ];
 }

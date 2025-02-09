@@ -9,10 +9,19 @@
     "margin-bottom": 0,
     "margin-left": 0,
     "margin-right": 0,
+    "spacing": 5,
 
-    "modules-left": ["hyprland/workspaces"],
+
+    "modules-left": ["hyprland/workspaces", "tray"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["battery"],
+    "modules-right": ["battery", "clock"],
+
+    "clock": {
+        "format": " {:%H:%M}",
+        "tooltip": "true",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": " {:%d/%m}"
+	}, 
 
     "hyprland/workspaces": {
         "active-only": false,
@@ -41,7 +50,11 @@
         "format-alt": "{icon}  {time}",
         "format-cirtical": "", 
         "format-icons": [" ", " ", " ", " ", " "]
-
-    }
+    },
+          
+	"tray": {
+		"icon-size": 16,
+		"spacing": 5
+	}
 
 }

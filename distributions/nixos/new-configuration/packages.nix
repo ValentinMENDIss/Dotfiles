@@ -17,6 +17,7 @@
     cmatrix
     cowsay				
     appimage-run			# script for running appimages on nixos
+    ascii-image-converter
 
     # Graphical Applications
     librewolf				# browser for privacy
@@ -31,6 +32,7 @@
     flameshot				# screenshot utility
     obsidian
     tiled
+    ghostty
 
     # WM Apps # 
     wofi				# app launcher
@@ -39,6 +41,7 @@
     dunst				# notification daemon
     hyprlock				# lock screen
     hypridle				# idle 
+    hyprsome				# managing multiple monitors for hyprland in the nix way
     brightnessctl			# configure brightness of the screen (for laptops)
     windowmaker				# old-style window manager
     bspwm
@@ -51,5 +54,6 @@
     # Programming
     python3				# needed in order to python be accessible without network connection :3
     gcc    				# compiler for C programming language
+    nodePackages.nodejs
   ];
 }

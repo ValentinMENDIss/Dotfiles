@@ -1,68 +1,47 @@
-// __        __          _                 
-// \ \      / /_ _ _   _| |__   __ _ _ __  
-//  \ \ /\ / / _` | | | | '_ \ / _` | '__| 
-//   \ V  V / (_| | |_| | |_) | (_| | |    
-//    \_/\_/ \__,_|\__, |_.__/ \__,_|_|    
-//                 |___/                   
-//  
-// by Stephan Raabe (2023) 
-// ----------------------------------------------------- 
-//
+// Waybar Config File
+// Made by: ValentinMENDIss (Github)
+
 {
-    // General Settings
-
-    // Position TOP
+    "position": "top",
     "layer": "top",
+    "height": 16,
+    "margin-top": 0,
     "margin-bottom": 0,
-
-    // Position BOTTOM
-    // "position": "bottom",
-    // "margin-top": 0,
-    // "margin-bottom": 14,
-    
-    "layer": "top",
     "margin-left": 0,
-    "margin-right": 0,    
-    "spacing": 0,
+    "margin-right": 0,
 
-    // Load Modules
-    "include": [
-        "~/.config/ml4w/settings/waybar-quicklinks.json",
-        "~/.config/waybar/themes/starter/modules.json"
-    ],
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["battery"],
 
-    // Modules Left
-    "modules-left": [
-        "custom/appmenu",
-        "custom/settings",
-        "custom/waybarthemes",
-        "custom/wallpaper",
-        //"wlr/taskbar",
-        "group/quicklinks",
-        "hyprland/window",
-        "custom/starter"
-    ],
+    "hyprland/workspaces": {
+        "active-only": false,
+        "all-outputs": true,
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "urgent": "",
+			"active": "",
+			"default": "󰧞"
+        },
+        "sort-by-number": "true"
+        },
+    
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}   {capacity}%",
+        "format-charging": "  {capacity}%",
+        "format-plugged": "  {capacity}%",
+        "format-alt": "{icon}  {time}",
+        "format-cirtical": "", 
+        "format-icons": [" ", " ", " ", " ", " "]
 
-    // Modules Center
-    "modules-center": [
-        "hyprland/workspaces"
-    ],
+    }
 
-    // Modules Right    
-    "modules-right": [
-        "custom/updates",
-        "pulseaudio",
-        //"backlight",
-        "bluetooth",
-        "battery", 
-        "network",
-        "group/hardware",
-        "custom/cliphist",
-        "custom/hypridle",
-        "custom/hyprshade",
-        "tray",
-        "custom/exit",
-        "custom/ml4w-welcome",
-        "clock"
-    ]
 }

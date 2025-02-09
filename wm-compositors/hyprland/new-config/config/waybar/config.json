@@ -14,7 +14,7 @@
 
     "modules-left": ["hyprland/workspaces", "tray"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["battery", "clock"],
+    "modules-right": ["battery", "clock", "custom/wlogout"],
 
     "clock": {
         "format": " {:%H:%M}",
@@ -48,13 +48,18 @@
         "format-charging": "  {capacity}%",
         "format-plugged": "  {capacity}%",
         "format-alt": "{icon}  {time}",
-        "format-cirtical": "", 
+        "format-critical": "", 
         "format-icons": [" ", " ", " ", " ", " "]
     },
           
 	"tray": {
 		"icon-size": 16,
 		"spacing": 5
-	}
+	},
+
+    "custom/wlogout": {
+        "format": " ",
+        "on-click": "wlogout"
+    }
 
 }

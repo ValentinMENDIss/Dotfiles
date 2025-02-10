@@ -14,7 +14,7 @@
 
     "modules-left": ["hyprland/workspaces", "tray"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["battery", "clock", "custom/wlogout"],
+    "modules-right": ["pulseaudio", "battery", "clock", "hyprland/language", "network", "custom/wlogout"],
 
     "clock": {
         "format": " {:%H:%M}",
@@ -60,6 +60,27 @@
     "custom/wlogout": {
         "format": " ",
         "on-click": "wlogout"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}",
+        "format-bluetooth": "{icon}, {volume}",
+        "format-icons": {
+            "default": ["󰕿", "󰖀", "󰕾"]
+        }
+    },
+    "network": {
+        "format": "{ifname}",
+        "format-wifi": "    {essid} ({signalStrength}%)",
+        "format-disconnected": "No Connection :/",
+        "max-length": 50,
+        "on-click": "ghostty -e nmtui"
+    },
+
+    "hyprland/language": {
+        "format": "    {short}"
+    }
+
     }
 
 }

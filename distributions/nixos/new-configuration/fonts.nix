@@ -7,7 +7,18 @@
       font-awesome
       roboto
       helvetica-neue-lt-std
+      gyre-fonts
+      libertinus
+      inconsolata
     ];
+    fontconfig = {
+      defaultFonts = {
+        serif = ["Libertinus Serif"];
+        sansSerif = ["gyre-fonts"];
+	monospace = ["inconsolata"];
+      };
+    };
   };
-}
 
+
+}

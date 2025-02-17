@@ -42,6 +42,7 @@
     hyprlock				# lock screen
     hypridle				# idle 
     hyprsome				# managing multiple monitors for hyprland in the nix way
+    wlogout
     brightnessctl			# configure brightness of the screen (for laptops)
     windowmaker				# old-style window manager
     bspwm

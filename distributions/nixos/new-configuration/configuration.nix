@@ -101,6 +101,7 @@
   services.desktopManager.plasma6.enable = true;
   # Enable Hyprland
   programs.hyprland.enable = true;
+  programs.waybar.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

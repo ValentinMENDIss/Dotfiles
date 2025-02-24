@@ -8,22 +8,13 @@
 * {
         min-height: 0;
         font-family: iosevka nerd font;
-        font-size: 12px;
+        font-size: 14px;
         border: none;
         border-radius: 0px;
 }
 
 window#waybar {
         background: transparent;
-        /* border: 2px solid @overlaycolor; */
-}
-
-#window {
-        color: @textcolor;
-}
-
-#tags button {
-        color: @overlaycolor;
 }
 
 #workspaces, 
@@ -58,7 +49,7 @@ window#waybar {
 }
 
 #workspaces button.focused {
-        color: #ddc7a1;
+        /*color: #ddc7a1;*/
 }
 
 #tray {

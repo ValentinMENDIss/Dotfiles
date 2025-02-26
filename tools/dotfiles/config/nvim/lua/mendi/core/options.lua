@@ -8,6 +8,7 @@ local opt = vim.opt
 
 vim.cmd("let g:netrw_liststyle = 3")  -- change tree list style
 opt.number = true -- show line numbers
+opt.relativenumber = true
 opt.wrap = false -- do not wrap lines
 opt.cursorline = true -- highlight the line where the cursor is
 

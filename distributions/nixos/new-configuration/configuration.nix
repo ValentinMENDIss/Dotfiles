@@ -39,7 +39,9 @@
 
   # Configuring Nix Package-Manager
   nix = {
-    # automatically collect garbage ( and delete old "snapshots")
+    # Optimising nix store
+    settings.auto-optimise-store = true;
+    # Automatically collect garbage ( and delete old "snapshots")
     gc = {
       automatic = true;
       dates = "weekly";
@@ -90,8 +92,6 @@
     enable = true;
     xkb.layout = "us";
     xkb.variant = "";
-    # enable BSPWM tiling window manager
-    windowManager.bspwm.enable = true;
   };
     };
 
@@ -102,12 +102,23 @@
   # Enable Hyprland
   programs.hyprland.enable = true;
   programs.waybar.enable = true;
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
+
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
+
+  # Enable auto-update of intel's microcode for intel processors
+  hardware.cpu.intel.updateMicrocode = true;
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -127,10 +138,6 @@
       kdePackages.kate
     #  thunderbird
     ];
-  };
-
-  services.xserver = {
-    windowManager.windowmaker.enable = true;
   };
 
   # Allow unfree packages

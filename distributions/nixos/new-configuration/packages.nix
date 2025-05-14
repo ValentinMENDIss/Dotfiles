@@ -22,8 +22,6 @@
     # Graphical Applications
     librewolf				# browser for privacy
     vscodium				# ide for programming
-    jetbrains.pycharm-community		# python ide
-    zed-editor
     kitty				# terminal (tty emulator)
     sioyek				# pdf viewer
     vlc					# video player
@@ -33,6 +31,8 @@
     obsidian
     tiled
     ghostty
+    onlyoffice-desktopeditors
+    localsend
 
     # WM Apps # 
     wofi				# app launcher
@@ -45,7 +45,6 @@
     wlogout
     brightnessctl			# configure brightness of the screen (for laptops)
     windowmaker				# old-style window manager
-    bspwm
     nitrogen
     picom
     polybar
@@ -55,6 +54,9 @@
     # Programming
     python3				# needed in order to python be accessible without network connection :3
     gcc    				# compiler for C programming language
-    nodePackages.nodejs
+    #nodePackages.nodejs
+
+    # Gaming :3
+    prismlauncher
   ];
 }

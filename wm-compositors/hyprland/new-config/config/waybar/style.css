@@ -14,7 +14,7 @@
 }
 
 window#waybar {
-        background: transparent;
+        background: alpha(@textcolor,.0);
 }
 
 #workspaces, 

@@ -1,0 +1,85 @@
+/* Made by ValentinMENDIss (github) */
+/* used color palette: catpuccin macchiato */
+
+@define-color backgroundcolor #24273a;
+@define-color overlaycolor #6e738d;
+@define-color textcolor #cad3f5;
+
+* {
+        min-height: 0;
+        font-family: iosevka nerd font;
+        font-size: 14px;
+        border: none;
+        border-radius: 0px;
+}
+
+window#waybar {
+        background: alpha(@textcolor,.0);
+}
+
+#workspaces, 
+#tray,
+#window,
+#pulseaudio,
+#battery,
+#clock,
+#language,
+#network,
+#custom-wlogout
+{
+        color: @textcolor;
+        background: @overlaycolor;
+        margin-top: 5px;
+        margin-left: 5px;
+        margin-right: 5px;
+        margin-bottom: 0px;
+        border-radius: 5px;
+        padding: 2px 5px;
+}
+
+#workspaces {
+
+}
+
+#workspaces button {
+        all:initial;
+        min-width: 0;
+        padding: 2px 4px;
+        color: @textcolor;
+}
+
+#workspaces button.focused {
+        /*color: #ddc7a1;*/
+}
+
+#tray {
+
+}
+
+#window {
+
+}
+
+#pulseaudio {
+
+}
+
+#battery {
+
+}
+
+#clock {
+
+}
+
+#language {
+
+}
+
+#network {
+
+}
+
+#custom-wlogout {
+
+}

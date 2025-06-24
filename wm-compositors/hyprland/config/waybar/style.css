@@ -1,20 +1,30 @@
+/* Waybar CSS file */
 /* Made by ValentinMENDIss (github) */
-/* used color palette: catpuccin macchiato */
 
-@define-color backgroundcolor #24273a;
-@define-color overlaycolor #6e738d;
-@define-color textcolor #cad3f5;
+
+/* color palette: catpuccin macchiato */
+/*@define-color backgroundcolor #24273a;*/
+/*@define-color overlaycolor #6e738d;*/
+/*@define-color textcolor #cad3f5;*/
+
+/* color palette: black-white */
+@define-color backgroundcolor #1a1a1a;
+@define-color overlaycolor #000000;
+@define-color textcolor #e6e6e6;
+
 
 * {
-        min-height: 0;
         font-family: iosevka nerd font;
         font-size: 14px;
-        border: none;
-        border-radius: 0px;
+        border: 0px;
+        border-radius: 20px;
+        padding-top: 0px;
+        padding-bottom: 1px;
 }
 
 window#waybar {
-        background: alpha(@textcolor,.0);
+        background: alpha(@backgroundcolor,0.2);
+
 }
 
 #workspaces, 
@@ -29,12 +39,16 @@ window#waybar {
 {
         color: @textcolor;
         background: @overlaycolor;
+
         margin-top: 5px;
-        margin-left: 5px;
-        margin-right: 5px;
-        margin-bottom: 0px;
-        border-radius: 5px;
-        padding: 2px 5px;
+        margin-left: 7.5px;
+        margin-right: 7.5px;
+        margin-bottom: 5px;
+
+        border-radius: 20px;
+
+        padding-right: 12.5px;
+        padding-left: 12.5px;
 }
 
 #workspaces {
@@ -45,6 +59,7 @@ window#waybar {
         all:initial;
         min-width: 0;
         padding: 2px 4px;
+        border-radius: 10px;
         color: @textcolor;
 }
 

@@ -7,9 +7,9 @@
 /*@define-color overlaycolor #6e738d;*/
 /*@define-color textcolor #cad3f5;*/
 
-/* color palette: black-white */
+/* color palette: gruv-box */
 @define-color backgroundcolor #1a1a1a;
-@define-color overlaycolor #000000;
+@define-color overlaycolor #282828;
 @define-color textcolor #e6e6e6;
 
 
@@ -17,7 +17,7 @@
         font-family: iosevka nerd font;
         font-size: 14px;
         border: 0px;
-        border-radius: 20px;
+        border-radius: 5px;
         padding-top: 0px;
         padding-bottom: 1px;
 }
@@ -45,8 +45,6 @@ window#waybar {
         margin-right: 7.5px;
         margin-bottom: 5px;
 
-        border-radius: 20px;
-
         padding-right: 12.5px;
         padding-left: 12.5px;
 }
@@ -59,9 +57,9 @@ window#waybar {
         all:initial;
         min-width: 0;
         padding: 2px 4px;
-        border-radius: 10px;
         color: @textcolor;
 }
+
 
 #workspaces button.focused {
         /*color: #ddc7a1;*/

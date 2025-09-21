@@ -1,0 +1,6 @@
+hardware-configuration.nix
+modules/nextcloud
+
+extraServices/containers/immich/library
+extraServices/containers/immich/postgres
+extraServices/containers/uptime-kuma/uptime-kuma-data

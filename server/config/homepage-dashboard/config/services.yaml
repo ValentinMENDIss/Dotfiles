@@ -1,0 +1,28 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services/
+
+- Server Tools:
+    - Uptime Kuma:
+        href: http://192.168.178.91:3001
+        description: container and service details
+        icon: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcf.appdrag.com%2Fdashboard-openvm-clo-b2d42c%2Fuploads%2FUptime-kuma-7fPG.png&f=1&nofb=1&ipt=3662f4404966cb39713db0cff10324884ce3a9fbebb7bfa4196c2d00e599ee3f
+
+
+- Data Storage:
+    - Immich:
+        href: http://192.168.178.91:2283
+        description: Image Storage
+        icon: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fwalkxcode%2Fdashboard-icons%2Fpng%2Fimmich.png&f=1&nofb=1&ipt=f8586726d8eeb03e5d1efb7b879ac18266b5ae22f0783fabda61e468258dd091
+
+    - Nextcloud:
+        href: http://192.168.178.91:8080
+        description: NAS
+        icon: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngrepo.com%2Fdownload%2F331498%2Fnextcloud.png&f=1&nofb=1&ipt=b852a68f5e7dcd6d511eda0d4dc0711a594152052e7e1a5a1f324c006f766273
+
+
+- Networking:
+  - PiHole:
+        href: https://192.168.178.91/admin/login 
+        description: Internet Tracker (DHCP, DNS, ...)
+        icon: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.laub-home.de%2Fimages%2Fthumb%2Fa%2Fa8%2FPihole_Logo.png.webp%2F232px-Pihole_Logo.png.webp.png&f=1&nofb=1&ipt=644bb1264808733ff9a8cb7e2c80b7852bc164282c36f5df82ee060465494117

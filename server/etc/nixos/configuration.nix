@@ -1,6 +1,5 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# Dotfiles/Configuration uploaded on:
+# github: ValentinMENDIss
 
 { config, pkgs, ... }:
 
@@ -83,9 +82,9 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 2283 80 67 547 ];
-  networking.firewall.allowedUDPPorts = [ 2283 80 67 547 ];
+  # Open ports in the firewall. # 3000 = homepage; 443/80/53 = PiHole; 8080 = NextCloud;
+  networking.firewall.allowedTCPPorts = [ 2283 53 80 443 67 547 3000 8080];
+  networking.firewall.allowedUDPPorts = [ 2283 53 80 443 67 547 3000 8080]; 
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 

@@ -1,5 +1,5 @@
-// Waybar Config File
-// Made by: ValentinMENDIss (Github)
+/* Waybar Config File */
+/* Made by: ValentinMENDIss (Github) */
 
 {
     "position": "top",
@@ -21,17 +21,33 @@
         "format-alt": " {:%d/%m}"
 	}, 
 
+    "hyprland/window": {
+        "icon": true,
+        "icon-size": 18
+    },
+
     "hyprland/workspaces": {
+        "on-scroll-up": "hyprctl dispatch workspace r+1",
+        "on-scroll-down": "hyprctl dispatch workspace r-1",
+        "on-click": "activate",
         "active-only": false,
         "all-outputs": true,
-        "on-scroll-up": "hyprctl dispatch workspace e+1",
-        "on-scroll-down": "hyprctl dispatch workspace e-1",
         "format": "{icon}",
-        "on-click": "activate",
+        "persistent-workspaces": {
+                "1": [ ],
+                "2": [ ],
+                "3": [ ]
+        },
         "format-icons": {
-            "urgent": "",
-			"active": "",
-			"default": "󰧞"
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9"
         },
         "sort-by-number": "true"
         },

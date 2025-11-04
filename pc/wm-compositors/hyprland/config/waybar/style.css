@@ -16,7 +16,7 @@
 * {
         font-family: iosevka nerd font;
         font-size: 14px;
-        border: 0px;
+        border: none;
         border-radius: 5px;
         padding-top: 0px;
         padding-bottom: 1px;
@@ -24,7 +24,6 @@
 
 window#waybar {
         background: alpha(@backgroundcolor,0.2);
-
 }
 
 #workspaces, 
@@ -56,43 +55,52 @@ window#waybar {
 #workspaces button {
         all:initial;
         min-width: 0;
-        padding: 2px 4px;
-        color: @textcolor;
+        padding: 2px 8px;
+        transition: all 0.15s ease-out;
 }
 
+#workspaces button.active {
+        background: #6e738d;
+        border-radius: 3px;
+        min-width: 15px;
+        transition: all 0.15s ease-out;
+        
+}
 
-#workspaces button.focused {
-        /*color: #ddc7a1;*/
+#workspaces button:hover {
+        color: #cad3f5; 
+        transition: all 0.15s ease-out;
 }
 
 #tray {
-
+        color: #cad3f5;
 }
 
 #window {
-
 }
 
 #pulseaudio {
-
 }
 
-#battery {
-
+#battery:hover {
+        color: #cad3f5;
+        transition: all 0.15s ease-out;
 }
 
-#clock {
-
+#clock:hover {
+        color: #cad3f5;
+        transition: all 0.15s ease-out;
 }
 
 #language {
-
 }
 
-#network {
-
+#network:hover {
+        color: #cad3f5;
+        transition: all 0.15s ease-out;
 }
 
-#custom-wlogout {
-
+#custom-wlogout:hover {
+        color: #cad3f5;
+        transition: all 0.15s ease-out;
 }

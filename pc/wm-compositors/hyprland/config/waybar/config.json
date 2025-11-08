@@ -12,7 +12,7 @@
 
     "modules-left": ["hyprland/workspaces", "tray"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["pulseaudio", "battery", "clock", "hyprland/language", "network", "custom/wlogout"],
+    "modules-right": ["hyprland/language", "pulseaudio", "battery", "custom/wttr", "clock", "custom/wlogout"],
 
     "clock": {
         "format": " {:%H:%M}",
@@ -74,6 +74,12 @@
     "custom/wlogout": {
         "format": " ",
         "on-click": "wlogout"
+    },
+
+    "custom/wttr": {
+        "exec": "~/.config/waybar/scripts/weather.sh",
+        "interval": 3600,
+        "format": "{}"
     },
 
     "pulseaudio": {

@@ -11,10 +11,12 @@
 @define-color backgroundcolor #1a1a1a;
 @define-color overlaycolor #282828;
 @define-color textcolor #e6e6e6;
+@define-color bordercolor rgba(235, 219, 178, 0.7);
 
 
 * {
-        font-family: iosevka nerd font;
+        font-family: inter;
+        font-weight: 500;
         font-size: 14px;
         border: none;
         border-radius: 5px;
@@ -23,7 +25,8 @@
 }
 
 window#waybar {
-        background: alpha(@backgroundcolor,0.2);
+        background: alpha(#1d2021 ,1);
+        border-radius: 0px;
 }
 
 #workspaces, 
@@ -46,6 +49,24 @@ window#waybar {
 
         padding-right: 12.5px;
         padding-left: 12.5px;
+
+        border-bottom: 2.5px solid @bordercolor;
+}
+
+#custom-wttr
+{
+        color: @textcolor;
+        background: @overlaycolor;
+
+        margin-top: 5px;
+        margin-left: 7.5px;
+        margin-right: 7.5px;
+        margin-bottom: 5px;
+
+        padding-right: 12.5px;
+        padding-left: 12.5px;
+
+        border-bottom: 2.5px solid @bordercolor;
 }
 
 #workspaces {
@@ -55,15 +76,16 @@ window#waybar {
 #workspaces button {
         all:initial;
         min-width: 0;
-        padding: 2px 8px;
-        transition: all 0.15s ease-out;
+        padding: 2px 12px;
 }
 
 #workspaces button.active {
         background: #6e738d;
-        border-radius: 3px;
+        border-radius: 2px;
         min-width: 15px;
         transition: all 0.15s ease-out;
+
+        border-bottom: 2.5px solid rgba(0, 0, 0, 0.05);
         
 }
 

@@ -16,18 +16,21 @@ return {
   },
   opts = {
     options = {
-      -- stylua: ignore
-      close_command = function(n) LazyVim.ui.bufremove(n) end,
-      -- stylua: ignore
-      right_mouse_command = function(n) LazyVim.ui.bufremove(n) end,
+      -- Use standard buffer delete
+      close_command = "bdelete! %d",
+      right_mouse_command = "bdelete! %d",
+
+      -- Show LSP diagnostics in bufferline
       diagnostics = "nvim_lsp",
       always_show_bufferline = false,
+
+      -- Show diagnostic counts (E:2 W:1)
       diagnostics_indicator = function(_, _, diag)
-        local icons = LazyVim.config.icons.diagnostics
-        local ret = (diag.error and icons.Error .. diag.error .. " " or "")
-          .. (diag.warning and icons.Warn .. diag.warning or "")
+        local ret = (diag.error and "E:" .. diag.error .. " " or "")
+          .. (diag.warning and "W:" .. diag.warning or "")
         return vim.trim(ret)
       end,
+
       offsets = {
         {
           filetype = "neo-tree",
@@ -36,21 +39,22 @@ return {
           text_align = "left",
         },
       },
-      ---@param opts bufferline.IconFetcherOpts
+
+      -- Basic filetype icons (no LazyVim)
       get_element_icon = function(opts)
-        return LazyVim.config.icons.ft[opts.filetype]
+        local icons = {
+          lua = "",
+          python = "",
+          cpp = "",
+          c = "",
+          txt = "",
+          markdown = "",
+        }
+        return icons[opts.filetype] or ""
       end,
     },
   },
   config = function(_, opts)
     require("bufferline").setup(opts)
-    -- Fix bufferline when restoring a session
-    vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete" }, {
-      callback = function()
-        vim.schedule(function()
-          pcall(nvim_bufferline)
-        end)
-      end,
-    })
   end,
 }

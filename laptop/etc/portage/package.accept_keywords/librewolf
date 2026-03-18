@@ -1,0 +1,3 @@
+www-client/librewolf ~amd64
+dev-libs/nss ~amd64
+dev-libs/nspr ~amd64

@@ -66,7 +66,7 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ battery_perc, "BAT: %s ", "BAT0"},
+	{ battery_perc, "BAT: %s%% ", "BAT0"},
 	// %% = show % at the end of the value(e.g 42%)
 	{ run_command, "VOL: %s%% ","wpctl get-volume @DEFAULT_SINK@ | awk '{printf \"%.0f\", $2 * 100}'"},
 	{ datetime, "%s",           "%F %T" },

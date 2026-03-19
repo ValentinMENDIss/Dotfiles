@@ -1,2 +1,2 @@
 #!/bin/sh
-grim -g "$(slurp)" - | wl-copy
+grim -g "$(slurp)" - | tee ~/Pictures/$(date +%s).png | wl-copy

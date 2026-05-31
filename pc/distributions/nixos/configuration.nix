@@ -1,27 +1,21 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
       ./hardware-configuration.nix
-      ./fonts.nix
       ./packages/packages.nix
     ];
 
   # Choosing Linux Kernel
   boot.kernelPackages = pkgs.linuxPackages;
 
-  # Turning on Experimental Features
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Turning on System Auto-Upgrade
   system.autoUpgrade.enable = true;
 
-  # Configuring Nix Package-Manager
   nix = {
-    # Optimising nix store
     settings.auto-optimise-store = true;
-    # Automatically collect garbage ( and delete old "snapshots")
     gc = {
       automatic = true;
       dates = "weekly";
@@ -29,30 +23,24 @@
     };
   };
 
-  security.doas.enable = true;
-  security.doas.extraRules = [{
-    users = ["mendiss"];
-    # retains environment variables while running commands
-    keepEnv = true;
-    # only require password verification a single time
-    persist = true;
-  }];
-  security.sudo.enable = false;
+  security.sudo.enable = true;
 
-  # Bootloader.
   boot.loader.limine.enable = true;
-  #boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "BlueSkies"; # Define your hostname.
+  networking = {
+    hostName = "blueskies";
+    networkmanager.enable = true;
+    firewall = {
+      enable = true;
+      # 53317 = LocalSend
+      allowedTCPPorts = [ 53317 ];
+      allowedUDPPorts = [ 53317 ];
+    };
+  };
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -67,27 +55,42 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
   services.flatpak.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
+  services.sysc-greet = {
+    enable = true;
+    compositor = "niri";
+  };
 
-  # Configure keymap in X11
+  # Ensures that the "greeter" user has permission to use video devices
+  users.extraUsers.greeter.extraGroups = [ "video" "input" ];
+
   services.xserver.xkb = {
     layout = "us";
     variant = "";
   };
 
-  # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
+  users.users.mendiss = {
+    isNormalUser = true;
+    description = "mendiss";
+    extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
+    packages = with pkgs; [
+    ];
+  };
+
+  powerManagement.cpuFreqGovernor = "performance";
+
+  programs.gamemode.enable = true;
+
+  programs.zsh.enable = true;
+
   security.rtkit.enable = true;
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -95,31 +98,13 @@
     pulse.enable = true;
   };
 
-  users.users.mendiss = {
-    isNormalUser = true;
-    description = "mendiss";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    ];
-  };
-
-  # Install firefox.
-  programs.firefox.enable = true;
-
-  powerManagement.cpuFreqGovernor = "performance";
-
-  programs.gamemode.enable = true;
-
-  # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware = {
-    # Enable auto-update of intel's microcode for intel processors
     cpu = {
       intel.updateMicrocode = true;
     };
 
-    # Enable OpenGL
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -139,15 +124,28 @@
       # accessible via `nvidia-settings`.
       nvidiaSettings = true;
 
-      # Optionally, you may need to select the appropriate driver version for your specific GPU.
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
-
   };
 
-  # Allow unfree packages
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+    config.common.default = "*";
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
+  stylix.enable = true;
+
+  stylix.image = pkgs.fetchurl {
+    url = "https://w.wallhaven.cc/full/21/wallhaven-213edy.png";
+    hash = "sha256-5fnOaB4ozW49gJFGZKpVfGMTo8EaFTPT4b6EIr4lcKA=";
+  };
+
+  stylix.polarity = "dark";
+
   nixpkgs.config.allowUnfree = true;
 
-  system.stateVersion = "25.11"; # Did you read the comment?
+  system.stateVersion = "25.11";
 
 }

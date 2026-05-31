@@ -1,44 +1,43 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
 
   imports =
   [
-    ./hyprland-setup.nix
+    ./emacs-setup.nix
+    ./steam.nix
   ];
 
   environment.systemPackages = with pkgs; [
     # CLI-Tools
     neovim
-    wget
-    git
+    yazi
     btop
     bat
+    git
+    wget
     unzip
-    yazi
     appimage-run
     
     # Graphical Applications
     vlc
-    flameshot
     obsidian
-    ghostty
-    kitty
+    foot
     localsend
-    logseq
     nextcloud-client
+    vesktop
 
-    # Programming
+    ## 3D Printing
+    freecad
+    orca-slicer
+
+    ## Programming
     godot
-    zed-editor
     clang
     clang-tools
 
-    # Gaming :3
+    ## Gaming :3
     prismlauncher
-
-    waywall
-
   ];
 }
 

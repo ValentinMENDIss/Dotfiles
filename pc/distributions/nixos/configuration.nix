@@ -77,11 +77,13 @@
   users.users.mendiss = {
     isNormalUser = true;
     description = "mendiss";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.zsh;
     packages = with pkgs; [
     ];
   };
+
+  virtualisation.docker.enable = true;
 
   powerManagement.cpuFreqGovernor = "performance";
 

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  home.stateVersion = "25.11"; 
+  home.stateVersion = "26.05"; 
 
   home.packages = with pkgs; [
     swaybg
@@ -9,6 +9,13 @@
 
     xwayland-satellite
     zoxide
+
+    # running `obsidian-x11` in terminal will launch now this script
+    (pkgs.writeShellScriptBin "obsidian-x11" ''
+      exec ${pkgs.obsidian}/bin/obsidian \
+      --enable-features=UseOzonePlatform \
+      --ozone-platform=x11 "$@"
+    '')
   ];
 
   programs.niri = {
@@ -150,6 +157,9 @@
   programs.zoxide.enable = true;
   programs.zoxide.enableZshIntegration = true;
 
+  programs.foot.enable = true;
+  programs.btop.enable = true;
+
   programs.waybar.enable = true;
   programs.waybar.settings.main = {
     layer = "top";
@@ -191,49 +201,8 @@
     enable = true;
   };
 
-  programs.firefox = {
-    enable = true;
-    policies = {
-      Preferences = {
-      };
-    };
-    profiles.default = {
-      id = 0;
-      name = "default";
-      isDefault = true;
-      settings = {
-        "browser.startup.homepage" = "about:blank";
-	"browser.search.defaultenginename" = "DuckDuckGo";
-	"browser.search.order.1" = "DuckDuckGo";
-      };
-      extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
-	ublock-origin
-	vimium
-	dearrow
-	darkreader
-      ];
-      bookmarks = {
-        force = true;
-        settings = [
-	  {
-            name = "nixpkgs";
-	    tags = [ "nixpkgs" ];
-	    keyword = "nixpkgs";
-	    url = "https://search.nixos.org/packages";
-	  }
-        ];
-      };
-    };
-    profiles.my-profile = {
-      id = 1;
-    };
-    profiles.my-friends-profile = {
-      id = 2;
-    };
-  };
-
-  stylix.targets.firefox.profileNames = [ "my-profile" "my-friends-profile" ];
-
+  stylix.targets.foot.enable = true;
+  stylix.targets.btop.enable = true;
   stylix.targets.nvf.enable = true;
   stylix.targets.gtk.enable = true;
   stylix.targets.gnome.enable = false;

@@ -12,20 +12,21 @@
     # CLI-Tools
     neovim
     yazi
-    btop
     bat
     git
     wget
     unzip
     appimage-run
+    fastfetch
     
     # Graphical Applications
     vlc
     obsidian
-    foot
     localsend
     nextcloud-client
     vesktop
+    kdePackages.dolphin
+    firefox
 
     ## 3D Printing
     freecad
@@ -35,6 +36,8 @@
     godot
     clang
     clang-tools
+    docker
+    docker-compose
 
     ## Gaming :3
     prismlauncher

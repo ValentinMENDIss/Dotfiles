@@ -2,13 +2,13 @@
   description = "Flake NixOS Configuration - Blueskies";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs"; # follow the nixpkgs input to avoid having multiple versions of nixpkgs (i.e. avoids duplicating the same dependency (like nixpkgs) across multiple inputs)
     };
     nvf.url = "github:notashelf/nvf";
@@ -22,7 +22,7 @@
     };
     vicinae.url = "github:vicinaehq/vicinae";
     stylix = {
-      url = "github:nix-community/stylix/release-25.11";
+      url = "github:nix-community/stylix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

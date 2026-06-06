@@ -1,10 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, pkgs, ... }:
 
 {
   imports =
     [ 
       ./hardware-configuration.nix
-      ./packages/packages.nix
+      ../../nixosModules/default.nix
     ];
 
   # Choosing Linux Kernel
@@ -29,7 +29,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking = {
-    hostName = "blueskies";
+    hostName = "redpanda";
     networkmanager.enable = true;
     firewall = {
       enable = true;
@@ -56,6 +56,20 @@
   };
 
   services.xserver.enable = true;
+  
+  services.libinput = {
+    enable = true;
+    
+    mouse = {
+      accelProfile = "flat";
+    };
+    
+    touchpad = {
+      clickMethod = "clickfinger";
+      tapping = false;
+    };
+
+  };
 
   services.flatpak.enable = true;
 
@@ -100,7 +114,7 @@
     pulse.enable = true;
   };
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "modesetting" ];
 
   hardware = {
     cpu = {
@@ -112,22 +126,6 @@
       enable32Bit = true;
     };
 
-    nvidia = {
-      
-      # Modesetting is required.
-      modesetting.enable = true;
-
-      powerManagement.enable = false;
-      powerManagement.finegrained = false;
-
-      open = false;
-
-      # Enable the Nvidia settings menu,
-      # accessible via `nvidia-settings`.
-      nvidiaSettings = true;
-
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
   };
 
   xdg.portal = {
@@ -146,8 +144,13 @@
 
   stylix.polarity = "dark";
 
+  # Enabling custom Modules for the Device(packages with configurations)
+  mendiss.modules.emacs.enable = true;
+  mendiss.modules.steam.enable = true;
+
   nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "25.11";
 
 }
+

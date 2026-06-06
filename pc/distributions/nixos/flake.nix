@@ -31,7 +31,7 @@
     packages."x86_64-linux".my-neovim = 
       (nvf.lib.neovimConfiguration {
 	pkgs = nixpkgs.legacyPackages."x86_64-linux";
-	modules = [ ./nvf-configuration.nix ];
+	modules = [ ./nvf-configuration/nvf-configuration.nix ];
       })
       .neovim;
 
@@ -41,10 +41,9 @@
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
-        ./configuration.nix
+        ./hosts/blueskies/configuration.nix
 	nur.modules.nixos.default
 
-	#nvf.nixosModules.default
         ({pkgs, ...}: {
           environment.systemPackages = [self.packages.${pkgs.stdenv.hostPlatform.system}.my-neovim];
         })
@@ -57,7 +56,7 @@
             useGlobalPkgs = true;
 	    useUserPackages = true;
 	    extraSpecialArgs = { inherit inputs; };
-	    users.mendiss = ./home.nix;
+	    users.mendiss = ./hosts/blueskies/home.nix;
 	    sharedModules = [
 	      niri.homeModules.niri
 	      niri.homeModules.stylix
@@ -67,5 +66,38 @@
 	}
       ];
     };
+
+    nixosConfigurations.redpanda = nixpkgs.lib.nixosSystem {
+      # Parse in all inputs we have declared in this flake to all submodules(configuration.nix, etc.)
+      # Useful for us, as we want all inputs to be the same (e.g. this will make the version/commit of nixpkgs be the same over all modules and submodules we import)
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs; };
+      modules = [
+        ./hosts/redpanda/configuration.nix
+	nur.modules.nixos.default
+
+        ({pkgs, ...}: {
+          environment.systemPackages = [self.packages.${pkgs.stdenv.hostPlatform.system}.my-neovim];
+        })
+	
+	sysc-greet.nixosModules.default
+	stylix.nixosModules.stylix
+	home-manager.nixosModules.home-manager
+	{
+	  home-manager = {
+            useGlobalPkgs = true;
+	    useUserPackages = true;
+	    extraSpecialArgs = { inherit inputs; };
+	    users.mendiss = ./hosts/redpanda/home.nix;
+	    sharedModules = [
+	      niri.homeModules.niri
+	      niri.homeModules.stylix
+	      vicinae.homeManagerModules.default
+	    ];
+	  };
+	}
+      ];
+    };
+
   };
 }

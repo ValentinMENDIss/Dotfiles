@@ -2,11 +2,14 @@
 
 This repository contains All of my Configuration Files for various Machines, as well as Operating Systems, Distributions, Desktop Environments and Window Tiling Managers.
 
+The newest configuration files are made specifically for Linux distribution called NixOS, that works utilizing Nix Language, and tools like Flakes, Home-Manager, etc.
+
 
 ## Directories - Walkthrough 
 
-- **pc** - intended for Configuration Files of my "general" systems (e.g. pc/laptop). Here you can find Configuration Files for various Distributions (e.g. NixOS, Gentoo's compiler, Window Tiling Manager configs, cli tools configurations, ...)
+- **pc-laptop** - intended for Configuration Files of my "general" systems (e.g. pc/laptop). Here you can find Configuration Files for various Distributions (e.g. NixOS, Gentoo's compiler, Window Tiling Manager configs, cli tools configurations, ...)
 - **server** - stores Configuration Files for my Server Machines. These can be Container setup data Files (e.g. podman, docker, ...), or it can also be Generic Configuration of the system. I currently run NixOS on my server. You will be able to find Configuration Files for it too.
+- **old-dotfiles** - stores all of my older configuration files for different systems and different Linux Distributions, as well as tools. In the near future, this directory will probably be deleted.
 
 
 ### Notes

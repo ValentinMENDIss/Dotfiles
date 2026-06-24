@@ -174,7 +174,7 @@
     enable = true;
 
     shellAliases = {
-      update = "sudo nixos-rebuild switch";
+      update = "sudo nixos-rebuild switch --flake";
     };
 
     enableCompletion = true;

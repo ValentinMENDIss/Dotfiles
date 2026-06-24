@@ -18,19 +18,18 @@
     obsidian
     localsend
     nextcloud-client
-    discord
-    kdePackages.dolphin
+    vesktop
+    nautilus
     firefox
-    
+    chromium
+    feishin
     zathura
-    libreoffice
 
     ## 3D Printing
     freecad
     orca-slicer
 
     ## Programming
-    godot
     clang
     clang-tools
     docker

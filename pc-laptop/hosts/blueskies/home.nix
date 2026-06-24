@@ -10,6 +10,8 @@
     xwayland-satellite
     zoxide
 
+    harmonoid
+
     # running `obsidian-x11` in terminal will launch now this script
     (pkgs.writeShellScriptBin "obsidian-x11" ''
       exec ${pkgs.obsidian}/bin/obsidian \
@@ -18,11 +20,45 @@
     '')
   ];
 
+  xdg.desktopEntries = {
+    kyber-qrc-handler = {
+      name = "Kyber QRC Handler";
+      exec = "/home/mendiss/Applications/KyberLinuxPort-x86_64.AppImage %u";
+      noDisplay = true;
+      mimeType = [ "x-scheme-handler/qrc" ];
+      settings = {
+        Terminal = "false";
+        StartupNotify = "false";
+        Comment = "Receives qrc:// OAuth redirects for the Kyber EA login flow";
+      };
+    };
+  };
+
+  xdg = {
+    enable = true;
+    mime.enable = true;
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "text/html" = "firefox.desktop";
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
+        "x-scheme-handler/about" = "firefox.desktop";
+        "application/x-extension-html" = "firefox.desktop";
+                                #"x-scheme-handler/qrc" = "kyber-qrc-handler.desktop";
+        "x-scheme-handler/qrc" = "firefox.desktop";
+      };
+    };
+    # Portal configuration moved to system-level (modules/core/flatpak.nix)
+    # to avoid package collisions between stable and unstable
+  };
+
   programs.niri = {
     enable = true;
     package = pkgs.niri;
     settings = {
       xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
+      environment."NIXOS_OZONE_WL" = "1";
 
       prefer-no-csd = true;
 
@@ -71,7 +107,7 @@
         "Mod+F3".action.spawn = ["wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"];
         "Mod+F2".action.spawn = ["wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"];
 
-	"Mod+Print".action.screenshot-screen = { show-pointer = false; };
+	"Shift+Mod+S".action.screenshot-screen = { show-pointer = false; };
 
 	"Mod+1".action.focus-workspace = 1;
 	"Mod+2".action.focus-workspace = 2;
@@ -136,9 +172,15 @@
 
   programs.zsh = {
     enable = true;
+
+    shellAliases = {
+      update = "sudo nixos-rebuild switch";
+    };
+
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+
     oh-my-zsh = {
       enable = true;
       plugins = [
@@ -213,17 +255,6 @@
     url = "https://w.wallhaven.cc/full/7j/wallhaven-7jreyy.png";
     hash = "sha256-lnWLdIL0bqNXsA2qMlF8iUIrAX3h4L/k0xxs7V10ElQ=";
   };
-
-#  stylix.image = pkgs.fetchurl {
-#    url = "https://w.wallhaven.cc/full/je/wallhaven-jevqpy.png";
-#    hash = "";
-#  };
-
-  #stylix.image = pkgs.fetchurl {
-  #  url = "https://w.wallhaven.cc/full/21/wallhaven-213edy.png";
-  #  hash = "sha256-5fnOaB4ozW49gJFGZKpVfGMTo8EaFTPT4b6EIr4lcKA=";
-  #};
-
 
   stylix.fonts = {
     monospace = {

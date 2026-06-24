@@ -1,5 +1,5 @@
 {
-  description = "Flake NixOS Configuration - Blueskies";
+  description = "Flake NixOS Configuration - Blueskies & Redpanda";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";

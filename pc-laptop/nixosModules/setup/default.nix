@@ -4,8 +4,6 @@
 
   imports =
   [
-    ./steam.nix
-    ./heroic.nix
+    ./gaming.nix
   ];
-
 }

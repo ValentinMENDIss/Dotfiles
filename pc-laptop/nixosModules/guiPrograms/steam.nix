@@ -1,6 +1,5 @@
 { lib, config, ... }:
 {
-
   options.mendiss.modules = {
     steam = {
       enable = lib.mkEnableOption "Enables Steam Module";

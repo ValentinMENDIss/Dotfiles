@@ -4,11 +4,20 @@
   imports =
     [ 
       ./hardware-configuration.nix
-      ../../nixosModules/default.nix
+      ./packages/packages.nix
     ];
 
   # Choosing Linux Kernel
   boot.kernelPackages = pkgs.linuxPackages;
+
+  zramSwap = {
+    enable = true;
+    memoryPercent = 75;
+  };
+
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 10;
+  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -55,7 +64,17 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+
+  xkb = {
+    layout = "us";
+    variant = "";
+  };
+
+  windowManager.windowmaker.enable = true;
+  displayManager.startx.enable = true;
+  };
 
   services.flatpak.enable = true;
 
@@ -67,17 +86,12 @@
   # Ensures that the "greeter" user has permission to use video devices
   users.extraUsers.greeter.extraGroups = [ "video" "input" ];
 
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
   services.printing.enable = true;
 
   users.users.mendiss = {
     isNormalUser = true;
     description = "mendiss";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "gamemode" ];
     shell = pkgs.zsh;
     packages = with pkgs; [
     ];
@@ -87,9 +101,27 @@
 
   powerManagement.cpuFreqGovernor = "performance";
 
-  programs.gamemode.enable = true;
+  programs = {
+    gamemode.enable = true;
 
-  programs.zsh.enable = true;
+    appimage.enable = true;
+    appimage.binfmt = true;
+    appimage.package = pkgs.appimage-run.override {
+      extraPkgs = pkgs: [ 
+        pkgs.gnutls 
+        pkgs.nettle
+      ];
+    };
+
+    zsh.enable = true;
+
+    hyprland = {
+      enable = true;
+      withUWSM = true; # recommended for most users
+      xwayland.enable = true; # Xwayland can be disabled.
+    };
+
+  };
 
   security.rtkit.enable = true;
 
@@ -130,11 +162,32 @@
     };
   };
 
+  # needed for my VIA-compatible keyboard to be able to have permissions to change the config via VIA webui
+  services.udev.extraRules = ''
+    SUBSYSTEM=="hidraw", ATTRS{idVendor}=="19f5", ATTRS{idProduct}=="32f5", MODE="0660", TAG+="uaccess"
+  '';
+
   xdg.portal = {
-    enable = true;
-    xdgOpenUsePortal = true;
-    config.common.default = "*";
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      enable = true;
+      xdgOpenUsePortal = true;
+      extraPortals = [ 
+        pkgs.xdg-desktop-portal-gtk 
+        pkgs.xdg-desktop-portal-gnome 
+      ];
+      config.niri = {
+        default = [
+          "gnome"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.FileChooser" = "gtk";
+        "org.freedesktop.impl.portal.ScreenCast" = "gnome";
+        "org.freedesktop.impl.portal.Screenshot" = "gnome";
+    };
+  };
+
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "nvidia";
+    NIXOS_OZONE_WL = "1";
   };
 
   stylix.enable = true;
@@ -149,6 +202,7 @@
   # Enabling custom Modules for the Device(packages with configurations)
   mendiss.modules.emacs.enable = true;
   mendiss.modules.steam.enable = true;
+  mendiss.modules.heroic.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 

@@ -4,7 +4,7 @@
   imports =
     [ 
       ./hardware-configuration.nix
-      ./packages/packages.nix
+      ../../nixosModules/default.nix
     ];
 
   # Choosing Linux Kernel

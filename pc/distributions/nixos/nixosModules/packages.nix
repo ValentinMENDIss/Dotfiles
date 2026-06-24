@@ -11,15 +11,19 @@
     unzip
     appimage-run
     fastfetch
+    grim
     
     # Graphical Applications
     vlc
     obsidian
     localsend
     nextcloud-client
-    vesktop
+    discord
     kdePackages.dolphin
     firefox
+    
+    zathura
+    libreoffice
 
     ## 3D Printing
     freecad

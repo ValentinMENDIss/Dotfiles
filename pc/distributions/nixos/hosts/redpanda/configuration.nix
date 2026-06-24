@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports =
@@ -33,9 +33,9 @@
     networkmanager.enable = true;
     firewall = {
       enable = true;
-      # 53317 = LocalSend
+      # 53317 = LocalSend; # [ 8889 8890 11111 ] = djitellopy
       allowedTCPPorts = [ 53317 ];
-      allowedUDPPorts = [ 53317 ];
+      allowedUDPPorts = [ 53317 8889 8890 11111 ];
     };
   };
 
@@ -56,6 +56,8 @@
   };
 
   services.xserver.enable = true;
+
+  services.desktopManager.plasma6.enable = true;
   
   services.libinput = {
     enable = true;
@@ -97,9 +99,17 @@
     ];
   };
 
+  fonts.packages = with pkgs; [
+    comfortaa
+    helvetica-neue-lt-std
+    scientifica
+  ];
+
   virtualisation.docker.enable = true;
 
   powerManagement.cpuFreqGovernor = "performance";
+
+  programs.xwayland.enable = true;
 
   programs.gamemode.enable = true;
 
@@ -125,6 +135,28 @@
       enable = true;
       enable32Bit = true;
     };
+    
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+      settings = {
+        General = {
+        # Shows battery charge of connected devices on supported
+        # Bluetooth adapters. Defaults to 'false'.
+        Experimental = true;
+        # When enabled other devices can connect faster to us, however
+        # the tradeoff is increased power consumption. Defaults to
+        # 'false'.
+        FastConnectable = true;
+      };
+      Policy = {
+        # Enable all controllers when they are found. This includes
+        # adapters present on start as well as adapters that are plugged
+        # in later on. Defaults to 'true'.
+        AutoEnable = true;
+      };
+      };
+    };
 
   };
 
@@ -132,8 +164,10 @@
     enable = true;
     xdgOpenUsePortal = true;
     config.common.default = "*";
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr ];
   };
+  # Enable Wayland support for Electron and Chromium applications
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   stylix.enable = true;
 

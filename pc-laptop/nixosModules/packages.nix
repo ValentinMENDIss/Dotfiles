@@ -24,6 +24,7 @@
     chromium
     feishin
     zathura
+    thunderbird
 
     ## 3D Printing
     freecad

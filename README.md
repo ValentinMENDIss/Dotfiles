@@ -1,9 +1,15 @@
 # Dotfiles
 
-This repository contains All of my Configuration Files for various Machines, as well as Operating Systems, Distributions, Desktop Environments and Window Tiling Managers.
+This repository contains **All of my Configuration Files** for various **Machines**, as well as **Operating Systems**, **Distributions**, **Desktop Environments**, **Window Tiling Managers** and **Tools**.
 
-The newest configuration files are made specifically for Linux distribution called NixOS, that works utilizing Nix Language, and tools like Flakes, Home-Manager, etc.
+<img align="left" alt="NixOS" width="30px" style="padding-right:10px;" src="https://github.com/devicons/devicon/blob/master/icons/nixos/nixos-original.svg" /> The newest configuration files are made specifically for Linux Distribution called **NixOS**. This Linux Distribution utilizes functional domain-specific Language called Nix to manage OS configuration. Also, I've paired it with Features like **Flakes**, **Home-Manager**, etc. 
 
+Those choises allowed me to have **better reproducibility**, and more options for setting up applications on **System** and on **Home Level**. With this I can setup everything including the OS, DE/WM and tools all in one root directory, which is this dotfiles repository, **rollback** and, or try other configuration files with a **single command**. 
+
+## Trying the Configuration out
+With help of the Configuration that was made utilizing Nix with other Features, you should find it **very straightforward** to try out the Configuration yourself if you are on **NixOS**. Just clone this repo to any directory of your choice, change into pc-laptop or server directory and run following command, where you can choose between **blueskies**_(my PC)_ and **redpanda**_(my Laptop)_: `sudo nixos-rebuild switch --flake #.blueskies`
+
+<img src="images/main-desktop-terminals-screenshot.png"/>
 
 ## Directories - Walkthrough 
 

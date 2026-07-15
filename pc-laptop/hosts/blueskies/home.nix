@@ -12,6 +12,8 @@
 
     harmonoid
 
+    fuchsia-cursor
+
     # running `obsidian-x11` in terminal will launch now this script
     (pkgs.writeShellScriptBin "obsidian-x11" ''
       exec ${pkgs.obsidian}/bin/obsidian \
@@ -79,6 +81,10 @@
 	  position = { x = 0; y = 0; };
 	  variable-refresh-rate = "on-demand";
         };
+      };
+
+      overview = {
+        backdrop-color = "#${config.lib.stylix.colors.base01}";
       };
 
       input = {
@@ -155,16 +161,18 @@
         "Mod+Shift+E".action.quit = {};
       };
 
-      layout.shadow = {
-        enable = true;
+      layout = {
+        shadow = {
+          enable = true;
 
-	offset.x = 7;
-	offset.y = 7;
+	  offset.x = 7;
+	  offset.y = 7;
 
-	color = "#000000";
+	  color = "#000000";
 
-	softness = 0;
-	spread = 0;
+	  softness = 0;
+	  spread = 0;
+        };
       };
 
     };
@@ -262,4 +270,19 @@
       name = "JetBrainsMono Nerd Font Mono";
     };
   };
+  
+  home.pointerCursor = {
+    package = pkgs.fuchsia-cursor;      # or phinger-cursors, capitaine-cursors,
+    name = "Fuchsia";         # catppuccin-cursors.mochaDark, etc.
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
+  };
+  gtk.enable = true; # required for pointerCursor.gtk.enable to actually apply
+
+  programs.niri.settings.cursor = {
+    theme = config.home.pointerCursor.name;
+    size = config.home.pointerCursor.size;
+  };
+
 }

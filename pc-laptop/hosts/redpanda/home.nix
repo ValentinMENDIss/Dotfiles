@@ -10,6 +10,8 @@
     xwayland-satellite
     zoxide
 
+    fuchsia-cursor
+
     # running `obsidian-x11` in terminal will launch now this script
     (pkgs.writeShellScriptBin "obsidian-x11" ''
       exec ${pkgs.obsidian}/bin/obsidian \
@@ -43,6 +45,10 @@
 	  position = { x = 0; y = 0; };
 	  variable-refresh-rate = "on-demand";
         };
+      };
+
+      overview = {
+        backdrop-color = "#${config.lib.stylix.colors.base01}";
       };
 
       input = {
@@ -285,21 +291,25 @@
     hash = "sha256-lnWLdIL0bqNXsA2qMlF8iUIrAX3h4L/k0xxs7V10ElQ=";
   };
 
-#  stylix.image = pkgs.fetchurl {
-#    url = "https://w.wallhaven.cc/full/je/wallhaven-jevqpy.png";
-#    hash = "";
-#  };
-
-  #stylix.image = pkgs.fetchurl {
-  #  url = "https://w.wallhaven.cc/full/21/wallhaven-213edy.png";
-  #  hash = "sha256-5fnOaB4ozW49gJFGZKpVfGMTo8EaFTPT4b6EIr4lcKA=";
-  #};
-
-
   stylix.fonts = {
     monospace = {
       package = pkgs.nerd-fonts.jetbrains-mono;
       name = "JetBrainsMono Nerd Font Mono";
     };
   };
+
+  home.pointerCursor = {
+    package = pkgs.fuchsia-cursor;      # or phinger-cursors, capitaine-cursors,
+    name = "Fuchsia";         # catppuccin-cursors.mochaDark, etc.
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
+  };
+  gtk.enable = true; # required for pointerCursor.gtk.enable to actually apply
+
+  programs.niri.settings.cursor = {
+    theme = config.home.pointerCursor.name;
+    size = config.home.pointerCursor.size;
+  };
+
 }

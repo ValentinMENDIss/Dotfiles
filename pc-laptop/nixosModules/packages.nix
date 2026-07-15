@@ -14,17 +14,18 @@
     grim
     
     # Graphical Applications
-    vlc
+    brave
     obsidian
+    vesktop
+    vlc
     localsend
     nextcloud-client
-    vesktop
     nautilus
-    firefox
-    chromium
     feishin
     zathura
     thunderbird
+    libresprite
+
 
     ## 3D Printing
     freecad

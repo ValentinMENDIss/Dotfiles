@@ -93,8 +93,6 @@
     description = "mendiss";
     extraGroups = [ "networkmanager" "wheel" "docker" "gamemode" ];
     shell = pkgs.zsh;
-    packages = with pkgs; [
-    ];
   };
 
   virtualisation.docker.enable = true;
@@ -198,6 +196,9 @@
   };
 
   stylix.polarity = "dark";
+
+  # needed for GTK4 apps to apply custom cursor themes
+  programs.dconf.enable = true;
 
   # Enabling custom Modules for the Device(packages with configurations)
   mendiss.modules.emacs.enable = true;

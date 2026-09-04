@@ -1,9 +1,0 @@
-{ ... }:
-
-{
-
-  imports =
-  [
-    ./gaming.nix
-  ];
-}

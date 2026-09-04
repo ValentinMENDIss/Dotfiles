@@ -25,20 +25,6 @@
     zathura
     thunderbird
     libresprite
-
-
-    ## 3D Printing
-    freecad
-    orca-slicer
-
-    ## Programming
-    clang
-    clang-tools
-    docker
-    docker-compose
-
-    ## Gaming :3
-    prismlauncher
   ];
 }
 

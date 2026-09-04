@@ -31,6 +31,7 @@
       go.enable = true;
       python.enable = true;
       json.enable = true;
+      zig.enable = true;
 
       enableTreesitter = true;
     };

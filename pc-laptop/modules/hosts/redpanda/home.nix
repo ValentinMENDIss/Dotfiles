@@ -1,6 +1,11 @@
 { config, lib, pkgs, ... }:
 
 {
+
+  imports = [
+    ../../home-manager/features/default.nix
+  ];
+
   home.stateVersion = "26.05"; 
 
   home.packages = with pkgs; [

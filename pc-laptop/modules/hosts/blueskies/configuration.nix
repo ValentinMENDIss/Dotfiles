@@ -4,7 +4,7 @@
   imports =
     [ 
       ./hardware-configuration.nix
-      ../../nixosModules/default.nix
+      ../../nixos/features/default.nix
     ];
 
   # Choosing Linux Kernel
@@ -86,12 +86,25 @@
   # Ensures that the "greeter" user has permission to use video devices
   users.extraUsers.greeter.extraGroups = [ "video" "input" ];
 
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [
+      cups-filters
+      cups-browsed
+      hplipWithPlugin
+    ];
+  };
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   users.users.mendiss = {
     isNormalUser = true;
     description = "mendiss";
-    extraGroups = [ "networkmanager" "wheel" "docker" "gamemode" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "gamemode" "lpadmin" ];
     shell = pkgs.zsh;
   };
 

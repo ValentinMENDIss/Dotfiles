@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    nixpkgs-unstable.url ="github:nixos/nixpkgs/nixos-unstable";
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,77 +28,95 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nur, home-manager, nvf, sysc-greet, niri, vicinae, stylix, ... }: {
-    packages."x86_64-linux".my-neovim = 
-      (nvf.lib.neovimConfiguration {
-	pkgs = nixpkgs.legacyPackages."x86_64-linux";
-	modules = [ ./nvf-configuration/nvf-configuration.nix ];
-      })
-      .neovim;
-
-    nixosConfigurations.blueskies = nixpkgs.lib.nixosSystem {
-      # Parse in all inputs we have declared in this flake to all submodules(configuration.nix, etc.)
-      # Useful for us, as we want all inputs to be the same (e.g. this will make the version/commit of nixpkgs be the same over all modules and submodules we import)
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, nur, home-manager, nvf, sysc-greet, niri, vicinae, stylix, ... }: 
+    let 
       system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./hosts/blueskies/configuration.nix
-	nur.modules.nixos.default
+      unstable = import nixpkgs-unstable {
+        inherit system;
 
-        ({pkgs, ...}: {
-          environment.systemPackages = [self.packages.${pkgs.stdenv.hostPlatform.system}.my-neovim];
+        # Add this if you use unfree packages from unstable
+        config.allowUnfree = true;
+      };
+    in
+    {
+      packages.${system}.my-neovim = 
+        (nvf.lib.neovimConfiguration {
+	  pkgs = nixpkgs.legacyPackages.${system};
+	  modules = [ ./nvf-configuration/nvf-configuration.nix ];
         })
+        .neovim;
+
+      nixosConfigurations.blueskies = nixpkgs.lib.nixosSystem {
+        inherit system;
+        # Parse in all inputs we have declared in this flake to all submodules(configuration.nix, etc.)
+        # Useful for us, as we want all inputs to be the same (e.g. this will make the version/commit of nixpkgs be the same over all modules and submodules we import)
+        specialArgs = {
+          inherit inputs unstable;
+        };
+        modules = [
+          ./modules/hosts/blueskies/configuration.nix
+	  nur.modules.nixos.default
+
+          ({pkgs, ...}: {
+            environment.systemPackages = [self.packages.${system}.my-neovim];
+          })
 	
-	sysc-greet.nixosModules.default
-	stylix.nixosModules.stylix
-	home-manager.nixosModules.home-manager
-	{
-	  home-manager = {
-            useGlobalPkgs = true;
-	    useUserPackages = true;
-	    extraSpecialArgs = { inherit inputs; };
-	    users.mendiss = ./hosts/blueskies/home.nix;
-	    sharedModules = [
-	      niri.homeModules.niri
-	      niri.homeModules.stylix
-	      vicinae.homeManagerModules.default
-	    ];
-	  };
-	}
-      ];
-    };
+	  sysc-greet.nixosModules.default
+	  stylix.nixosModules.stylix
+	  home-manager.nixosModules.home-manager
+	  {
+	    home-manager = {
+              useGlobalPkgs = true;
+	      useUserPackages = true;
+              extraSpecialArgs = {
+                inherit inputs unstable;
+              };
+	      users.mendiss = ./modules/hosts/blueskies/home.nix;
+	      sharedModules = [
+	        niri.homeModules.niri
+	        niri.homeModules.stylix
+	        vicinae.homeManagerModules.default
+	      ];
+	    };
+	  }
+        ];
+      };
 
-    nixosConfigurations.redpanda = nixpkgs.lib.nixosSystem {
-      # Parse in all inputs we have declared in this flake to all submodules(configuration.nix, etc.)
-      # Useful for us, as we want all inputs to be the same (e.g. this will make the version/commit of nixpkgs be the same over all modules and submodules we import)
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./hosts/redpanda/configuration.nix
-	nur.modules.nixos.default
+      nixosConfigurations.redpanda = nixpkgs.lib.nixosSystem {
+        # Parse in all inputs we have declared in this flake to all submodules(configuration.nix, etc.)
+        # Useful for us, as we want all inputs to be the same (e.g. this will make the version/commit of nixpkgs be the same over all modules and submodules we import)
+        inherit system;
+        specialArgs = {
+          inherit inputs unstable;
+        };
+        modules = [
+          ./modules/hosts/redpanda/configuration.nix
+	  nur.modules.nixos.default
 
-        ({pkgs, ...}: {
-          environment.systemPackages = [self.packages.${pkgs.stdenv.hostPlatform.system}.my-neovim];
-        })
+          ({pkgs, ...}: {
+            environment.systemPackages = [self.packages.${system}.my-neovim];
+          })
 	
-	sysc-greet.nixosModules.default
-	stylix.nixosModules.stylix
-	home-manager.nixosModules.home-manager
-	{
-	  home-manager = {
-            useGlobalPkgs = true;
-	    useUserPackages = true;
-	    extraSpecialArgs = { inherit inputs; };
-	    users.mendiss = ./hosts/redpanda/home.nix;
-	    sharedModules = [
-	      niri.homeModules.niri
-	      niri.homeModules.stylix
-	      vicinae.homeManagerModules.default
-	    ];
-	  };
-	}
-      ];
-    };
+	  sysc-greet.nixosModules.default
+	  stylix.nixosModules.stylix
+	  home-manager.nixosModules.home-manager
+	  {
+	    home-manager = {
+              useGlobalPkgs = true;
+	      useUserPackages = true;
+              extraSpecialArgs = {
+                inherit inputs unstable;
+              };
+	      users.mendiss = ./modules/hosts/redpanda/home.nix;
+	      sharedModules = [
+	        niri.homeModules.niri
+	        niri.homeModules.stylix
+	        vicinae.homeManagerModules.default
+	      ];
+	    };
+	  }
+        ];
+      };
 
-  };
+    };
 }

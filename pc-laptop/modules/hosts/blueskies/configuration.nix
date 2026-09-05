@@ -21,8 +21,6 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  system.autoUpgrade.enable = true;
-
   nix = {
     settings.auto-optimise-store = true;
     gc = {

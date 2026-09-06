@@ -15,8 +15,6 @@
     xwayland-satellite
     zoxide
 
-    harmonoid
-
     fuchsia-cursor
 
     # running `obsidian-x11` in terminal will launch now this script
@@ -89,44 +87,59 @@
   programs.zoxide.enable = true;
   programs.zoxide.enableZshIntegration = true;
 
-  programs.foot.enable = true;
+  programs.foot = {
+    enable = true;
+    settings = {
+      main = {
+        pad = "15x15";
+      };
+    };
+  };
   programs.btop.enable = true;
 
   programs.waybar.enable = true;
-  programs.waybar.settings.main = {
-    layer = "top";
-    modules-left = ["clock#date" "custom/wttr"];
-    modules-center = ["clock#time" "battery"];
-    modules-right = ["pulseaudio"];
+  programs.waybar = {
+    settings.main = {
+      layer = "top";
+      modules-left = ["clock#date" "custom/wttr"];
+      modules-center = ["clock#time" "battery"];
+      modules-right = ["pulseaudio"];
 
-    "sway/window" = {
-      max-length = 50;
+      "sway/window" = {
+        max-length = 50;
+      };
+
+      "battery" = {
+        format = "{capacity}% {icon}";
+        format-icons = ["" "" "" "" ""];
+      };
+
+      "clock#date" = {
+        format = "{:%a - %d %b}";
+      };
+
+      "clock#time" = {
+        format = "{:%H:%M}";
+      };
+
+      "pulseaudio" = {
+        format = "{volume}%";
+      };
+
+      "custom/wttr" = {
+        exec = pkgs.writeShellScript "wttr" ''
+            curl -s http://wttr.in/berlin\?format="%c%t"
+        '';
+        interval = 3600;
+        format = "   {}";
+      };
     };
 
-    "battery" = {
-      format = "{capacity}% {icon}";
-      format-icons = ["" "" "" "" ""];
-    };
-
-    "clock#date" = {
-      format = "{:%a - %d %b}";
-    };
-
-    "clock#time" = {
-      format = "{:%H:%M}";
-    };
-
-    "pulseaudio" = {
-      format = "{volume}%";
-    };
-
-    "custom/wttr" = {
-      exec = pkgs.writeShellScript "wttr" ''
-          curl -s http://wttr.in/berlin\?format="%c%t"
-      '';
-      interval = 3600;
-      format = "   {}";
-    };
+    style = ''
+      * {
+        color: #${config.lib.stylix.colors.base05};
+      }
+    '';
   };
 
   programs.vicinae = {
@@ -139,7 +152,6 @@
   stylix.targets.gtk.enable = true;
   stylix.targets.gnome.enable = false;
   stylix.targets.niri.enable = true;
-
 
   stylix.image = pkgs.fetchurl {
     url = "https://w.wallhaven.cc/full/7j/wallhaven-7jreyy.png";

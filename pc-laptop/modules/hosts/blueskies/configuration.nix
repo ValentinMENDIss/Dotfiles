@@ -19,6 +19,8 @@
     "vm.swappiness" = 10;
   };
 
+  boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   nix = {
@@ -200,6 +202,8 @@
   };
 
   stylix.enable = true;
+
+  stylix.targets.plymouth.enable = false;
 
   stylix.image = pkgs.fetchurl {
     url = "https://w.wallhaven.cc/full/21/wallhaven-213edy.png";

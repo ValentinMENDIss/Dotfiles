@@ -106,9 +106,21 @@
         "Mod+Shift+E".action.quit = {};
       };
 
+      overview = {
+        backdrop-color = "${config.lib.stylix.colors.base01}";
+      };
+
       layout = {
-        shadow = {
+        focus-ring = {
           enable = true;
+          width = 3;
+          active.color = "#${config.lib.stylix.colors.base03}60";
+        };
+        border = {
+          enable = false;
+        };
+        shadow = {
+          enable = false;
 
 	  offset.x = 7;
 	  offset.y = 7;
@@ -120,6 +132,17 @@
         };
       };
 
+      window-rules = [
+        {
+          geometry-corner-radius = {
+            top-left = 16.0;
+            top-right = 16.0;
+            bottom-left = 16.0;
+            bottom-right = 16.0;
+          };
+          clip-to-geometry = true;
+        }
+      ];
     };
   };
 

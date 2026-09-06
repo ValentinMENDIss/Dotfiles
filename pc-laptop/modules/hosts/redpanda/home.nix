@@ -64,7 +64,15 @@
   programs.zoxide.enable = true;
   programs.zoxide.enableZshIntegration = true;
 
-  programs.foot.enable = true;
+  programs.foot = {
+    enable = true;
+    settings = {
+      main = {
+        pad = "15x15";
+      };
+    };
+  };
+
   programs.btop.enable = true;
 
   programs.waybar.enable = true;

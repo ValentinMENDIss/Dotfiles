@@ -93,10 +93,8 @@
   users.users.mendiss = {
     isNormalUser = true;
     description = "mendiss";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "dialout" "adbusers" ];
     shell = pkgs.zsh;
-    packages = with pkgs; [
-    ];
   };
 
   fonts.packages = with pkgs; [

@@ -104,7 +104,7 @@
   users.users.mendiss = {
     isNormalUser = true;
     description = "mendiss";
-    extraGroups = [ "networkmanager" "wheel" "docker" "gamemode" "lpadmin" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "gamemode" "lpadmin" "dialout" "adbusers" ];
     shell = pkgs.zsh;
   };
 

@@ -6,5 +6,6 @@
     clang-tools
     docker
     docker-compose
+    android-tools
   ];
 }

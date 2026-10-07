@@ -22,7 +22,6 @@
     nextcloud-client
     nautilus
     feishin
-    zathura
     thunderbird
     libresprite
   ];

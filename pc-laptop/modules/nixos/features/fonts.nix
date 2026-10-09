@@ -2,8 +2,7 @@
 
 {
   fonts.packages = with pkgs; [
-        nerdfonts
-        (pkgs.google-fonts.override {
+        (google-fonts.override {
                 fonts = [ 
                                 "Cormorant Garamond" 
                                 "Libre Baskerville" 

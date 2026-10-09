@@ -64,42 +64,47 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
-  services.xserver = {
-    enable = true;
+  services = {
+    desktopManager.plasma6.enable = true;
 
-  xkb = {
-    layout = "us";
-    variant = "";
+    # Auto-Mount Drrives (e.g. USB Drives)
+    udisks2.enable = true;
+
+    flatpak.enable = true;
+
+    sysc-greet = {
+      enable = true;
+      compositor = "niri";
+    };
+
+    printing = {
+     enable = true;
+     drivers = with pkgs; [
+       cups-filters
+       cups-browsed
+       hplipWithPlugin
+     ];
+    };
+    # Provides support for auto internet discovery of printers on the network
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
   };
 
-  windowManager.windowmaker.enable = true;
-  displayManager.startx.enable = true;
-  };
-
-  services.flatpak.enable = true;
-
-  services.sysc-greet = {
-    enable = true;
-    compositor = "niri";
-  };
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    plasma-browser-integration
+    konsole
+    elisa
+    okular
+    kate
+    khelpcenter
+    spectacle
+  ];
 
   # Ensures that the "greeter" user has permission to use video devices
   users.extraUsers.greeter.extraGroups = [ "video" "input" ];
-
-  services.printing = {
-    enable = true;
-    drivers = with pkgs; [
-      cups-filters
-      cups-browsed
-      hplipWithPlugin
-    ];
-  };
-
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
 
   users.users.mendiss = {
     isNormalUser = true;
@@ -125,12 +130,6 @@
     };
 
     zsh.enable = true;
-
-    hyprland = {
-      enable = true;
-      withUWSM = true; # recommended for most users
-      xwayland.enable = true; # Xwayland can be disabled.
-    };
 
   };
 
@@ -185,14 +184,20 @@
         pkgs.xdg-desktop-portal-gtk 
         pkgs.xdg-desktop-portal-gnome 
       ];
-      config.niri = {
-        default = [
-          "gnome"
-          "gtk"
+      config = {
+        common.default = [
+            "gtk"
         ];
-        "org.freedesktop.impl.portal.FileChooser" = "gtk";
-        "org.freedesktop.impl.portal.ScreenCast" = "gnome";
-        "org.freedesktop.impl.portal.Screenshot" = "gnome";
+
+        niri = {
+          default = [
+            "gnome"
+            "gtk"
+          ];
+          "org.freedesktop.impl.portal.FileChooser" = "gtk";
+          "org.freedesktop.impl.portal.ScreenCast" = "gnome";
+          "org.freedesktop.impl.portal.Screenshot" = "gnome";
+        };
     };
   };
 

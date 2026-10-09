@@ -42,20 +42,18 @@
   xdg = {
     enable = true;
     mime.enable = true;
-    mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "text/html" = "brave.desktop";
-        "x-scheme-handler/http" = "brave.desktop";
-        "x-scheme-handler/https" = "brave.desktop";
-        "x-scheme-handler/about" = "brave.desktop";
-        "application/x-extension-html" = "brave.desktop";
-                                #"x-scheme-handler/qrc" = "kyber-qrc-handler.desktop";
-        "x-scheme-handler/qrc" = "brave.desktop";
-      };
+  };
+
+  services.udiskie = {
+    enable = true;
+    settings = {
+        # workaround for
+        # https://github.com/nix-community/home-manager/issues/632
+        program_options = {
+            # replace with your favorite file manager
+            file_manager = "${pkgs.kdePackages.dolphin}/bin/dolphin";
+        };
     };
-    # Portal configuration moved to system-level (modules/core/flatpak.nix)
-    # to avoid package collisions between stable and unstable
   };
 
   programs.zsh = {

@@ -12,18 +12,25 @@
     appimage-run
     fastfetch
     grim
+
+    wine
+    winetricks
     
     # Graphical Applications
-    brave
     obsidian
     vesktop
     vlc
     localsend
     nextcloud-client
-    nautilus
     feishin
     thunderbird
     libresprite
+    libreoffice
+
+    kdePackages.dolphin
+    kdePackages.qtsvg
+
+    lutris
   ];
 }
 

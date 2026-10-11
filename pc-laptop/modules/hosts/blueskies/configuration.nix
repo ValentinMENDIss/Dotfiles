@@ -219,8 +219,8 @@
   stylix.targets.plymouth.enable = false;
 
   stylix.image = pkgs.fetchurl {
-    url = "https://w.wallhaven.cc/full/21/wallhaven-213edy.png";
-    hash = "sha256-5fnOaB4ozW49gJFGZKpVfGMTo8EaFTPT4b6EIr4lcKA=";
+    url = "https://live.staticflickr.com/65535/55582885743_d51ff8f4ae_b.jpg";
+    hash = "sha256-o0dmivQJURcdKZvtCEp5m8ZCTp7dCt7rG6Ub3WIvAMw=";
   };
 
   stylix.polarity = "dark";

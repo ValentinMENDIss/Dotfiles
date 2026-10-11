@@ -199,13 +199,6 @@
 
     config = {
       common.default = [ "gtk" ];
-
-      niri = {
-        default = [ "gtk" ];
-        "org.freedesktop.impl.portal.FileChooser" = "gtk";
-        "org.freedesktop.impl.portal.ScreenCast" = "gnome";
-      };
-
       kde.default = [ "kde" "gtk" ];
     };
   };

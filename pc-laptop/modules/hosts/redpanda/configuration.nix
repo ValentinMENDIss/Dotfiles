@@ -203,10 +203,19 @@
 
   xdg.portal = {
     enable = true;
-    xdgOpenUsePortal = true;
-    config.common.default = "*";
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr ];
-  };
+    xdgOpenUsePortal = true; # Optional
+
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+      pkgs.kdePackages.xdg-desktop-portal-kde
+    ];
+
+    config = {
+      common.default = [ "gtk" ];
+      kde.default = [ "kde" "gtk" ];
+    };
+  };      
 
   # Enable Wayland support for Electron and Chromium applications
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

@@ -11,7 +11,9 @@
                                 "Dawning of a New Day" 
                                 "Space Mono" 
                                 "Doto" 
-                                "Montserrat" ];
+                                "Montserrat"
+                                "Outfit"
+                ];
         })
   ];
 }

@@ -57,6 +57,9 @@
 
   services.xserver.enable = true;
 
+  # Auto-Mounting for drives (e.g. Flash Drive)
+  services.udisks2.enable = true;
+
   services.desktopManager.plasma6.enable = true;
   
   services.libinput = {

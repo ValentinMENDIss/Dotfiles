@@ -2,7 +2,6 @@
 
 {
    programs.niri = {
-    enable = true;
     package = pkgs.niri;
     settings = {
       xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
@@ -135,10 +134,10 @@
       window-rules = [
         {
           geometry-corner-radius = {
-            top-left = 16.0;
-            top-right = 16.0;
-            bottom-left = 16.0;
-            bottom-right = 16.0;
+            top-left = 0.0;
+            top-right = 0.0;
+            bottom-left = 0.0;
+            bottom-right = 0.0;
           };
           clip-to-geometry = true;
         }

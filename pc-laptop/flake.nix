@@ -13,12 +13,12 @@
       inputs.nixpkgs.follows = "nixpkgs"; # follow the nixpkgs input to avoid having multiple versions of nixpkgs (i.e. avoids duplicating the same dependency (like nixpkgs) across multiple inputs)
     };
     nvf.url = "github:notashelf/nvf";
-    sysc-greet = {
-      url = "github:Nomadcxx/sysc-greet";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     niri = {
       url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    silentSDDM = {
+      url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     vicinae.url = "github:vicinaehq/vicinae";
@@ -30,9 +30,14 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lightcraft = {
+      url = "github:storytold/lightcraft";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, nur, home-manager, nvf, sysc-greet, niri, vicinae, stylix, ... }: 
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, nur, home-manager, nvf, niri, vicinae, stylix, lightcraft, ... }: 
+
     let 
       system = "x86_64-linux";
       unstable = import nixpkgs-unstable {
@@ -65,7 +70,6 @@
             environment.systemPackages = [self.packages.${system}.my-neovim];
           })
 	
-	  sysc-greet.nixosModules.default
 	  stylix.nixosModules.stylix
 	  home-manager.nixosModules.home-manager
 	  {
@@ -101,7 +105,6 @@
             environment.systemPackages = [self.packages.${system}.my-neovim];
           })
 	
-	  sysc-greet.nixosModules.default
 	  stylix.nixosModules.stylix
 	  home-manager.nixosModules.home-manager
 	  {

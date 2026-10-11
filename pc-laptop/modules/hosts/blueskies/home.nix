@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 {
-
   imports = [
     ../../home-manager/features/default.nix
   ];
@@ -126,7 +125,7 @@
 
       "custom/wttr" = {
         exec = pkgs.writeShellScript "wttr" ''
-            curl -s http://wttr.in/berlin\?format="%c%t"
+          curl -s http://wttr.in/Berlin,Germany\?format\="%c%t"
         '';
         interval = 3600;
         format = "   {}";
@@ -135,6 +134,7 @@
 
     style = ''
       * {
+        font-family: Outfit;
         color: #${config.lib.stylix.colors.base05};
       }
     '';
@@ -152,8 +152,8 @@
   stylix.targets.niri.enable = true;
 
   stylix.image = pkgs.fetchurl {
-    url = "https://w.wallhaven.cc/full/7j/wallhaven-7jreyy.png";
-    hash = "sha256-lnWLdIL0bqNXsA2qMlF8iUIrAX3h4L/k0xxs7V10ElQ=";
+    url = "https://live.staticflickr.com/65535/55582885743_d51ff8f4ae_b.jpg";
+    hash = "sha256-o0dmivQJURcdKZvtCEp5m8ZCTp7dCt7rG6Ub3WIvAMw=";
   };
 
   stylix.fonts = {
@@ -176,5 +176,4 @@
     theme = config.home.pointerCursor.name;
     size = config.home.pointerCursor.size;
   };
-
 }

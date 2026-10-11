@@ -19,8 +19,6 @@
     "vm.swappiness" = 10;
   };
 
-  boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   nix = {
@@ -65,17 +63,21 @@
   };
 
   services = {
+    displayManager.sessionPackages = [ pkgs.niri ];
+
+    xserver.videoDrivers = ["nvidia"];
+
     desktopManager.plasma6.enable = true;
+
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
 
     # Auto-Mount Drrives (e.g. USB Drives)
     udisks2.enable = true;
 
     flatpak.enable = true;
-
-    sysc-greet = {
-      enable = true;
-      compositor = "niri";
-    };
 
     printing = {
      enable = true;
@@ -103,9 +105,6 @@
     spectacle
   ];
 
-  # Ensures that the "greeter" user has permission to use video devices
-  users.extraUsers.greeter.extraGroups = [ "video" "input" ];
-
   users.users.mendiss = {
     isNormalUser = true;
     description = "mendiss";
@@ -118,6 +117,15 @@
   powerManagement.cpuFreqGovernor = "performance";
 
   programs = {
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        stdenv.cc.cc
+      ];
+    };
+
+    niri.enable = true;
+
     gamemode.enable = true;
 
     appimage.enable = true;
@@ -142,7 +150,7 @@
     pulse.enable = true;
   };
 
-  services.xserver.videoDrivers = ["nvidia"];
+
 
   hardware = {
     cpu = {

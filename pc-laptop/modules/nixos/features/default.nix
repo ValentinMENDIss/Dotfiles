@@ -9,5 +9,8 @@
     ./fonts.nix
     ./browser.nix
     ./previews.nix
+    ./sddm_theme.nix
+    ./kdeconnect.nix
+    ./lightcraft.nix
   ];
 }

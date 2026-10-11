@@ -28,24 +28,31 @@
   xdg = {
     enable = true;
     mime.enable = true;
-    mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "text/html" = "brave.desktop";
-        "x-scheme-handler/http" = "brave.desktop";
-        "x-scheme-handler/https" = "brave.desktop";
-        "x-scheme-handler/about" = "brave.desktop";
-        "application/x-extension-html" = "brave.desktop";
-        "x-scheme-handler/qrc" = "brave.desktop";
-      };
-    };
   };
 
+  services.udiskie = {
+    enable = true;
+    settings = {
+        # workaround for
+        # https://github.com/nix-community/home-manager/issues/632
+        program_options = {
+            # replace with your favorite file manager
+            file_manager = "${pkgs.kdePackages.dolphin}/bin/dolphin";
+        };
+    };
+  };
+  
   programs.zsh = {
     enable = true;
+
+    shellAliases = {
+      update = "sudo nixos-rebuild switch --flake";
+    };
+
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+
     oh-my-zsh = {
       enable = true;
       plugins = [
@@ -106,7 +113,7 @@
 
       "custom/wttr" = {
         exec = pkgs.writeShellScript "wttr" ''
-            curl -s http://wttr.in/berlin\?format="%c%t"
+          curl -s http://wttr.in/Berlin,Germany\?format\="%c%t"
         '';
         interval = 3600;
         format = "   {}";
@@ -115,6 +122,7 @@
 
     style = ''
       * {
+        font-family: Outfit;
         color: #${config.lib.stylix.colors.base05};
       }
     '';

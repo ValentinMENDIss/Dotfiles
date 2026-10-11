@@ -55,43 +55,54 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
-  services.xserver.enable = true;
+    services = {
+      displayManager.sessionPackages = [ pkgs.niri ];
 
-  # Auto-Mounting for drives (e.g. Flash Drive)
-  services.udisks2.enable = true;
+      desktopManager.plasma6.enable = true;
 
-  services.desktopManager.plasma6.enable = true;
-  
-  services.libinput = {
-    enable = true;
+      libinput = {
+        enable = true;
     
-    mouse = {
-      accelProfile = "flat";
-    };
+        mouse = {
+          accelProfile = "flat";
+        };
+   
+        touchpad = {
+          clickMethod = "clickfinger";
+          tapping = false;
+        };
+      };
+
+      displayManager.sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
+
+      # Auto-Mount Drrives (e.g. USB Drives)
+      udisks2.enable = true;
+
+      flatpak.enable = true;
+
+      printing = {
+       enable = true;
+       drivers = with pkgs; [
+         cups-filters
+         cups-browsed
+         hplipWithPlugin
+       ];
+      };
     
-    touchpad = {
-      clickMethod = "clickfinger";
-      tapping = false;
+      # Provides support for auto internet discovery of printers on the network
+      avahi = {
+        enable = true;
+        nssmdns4 = true;
+        openFirewall = true;
+      };
     };
 
-  };
-
-  services.flatpak.enable = true;
-
-  services.sysc-greet = {
-    enable = true;
-    compositor = "niri";
-  };
 
   # Ensures that the "greeter" user has permission to use video devices
   users.extraUsers.greeter.extraGroups = [ "video" "input" ];
-
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  services.printing.enable = true;
 
   users.users.mendiss = {
     isNormalUser = true;
@@ -110,11 +121,30 @@
 
   powerManagement.cpuFreqGovernor = "performance";
 
-  programs.xwayland.enable = true;
+  programs = {
+    nix-ld = {
+      enable = true;
+        libraries = with pkgs; [
+          stdenv.cc.cc
+        ];
+    };
 
-  programs.gamemode.enable = true;
+    niri.enable = true;
 
-  programs.zsh.enable = true;
+    xwayland.enable = true;
+
+    appimage.enable = true;
+    appimage.binfmt = true;
+    appimage.package = pkgs.appimage-run.override {
+      extraPkgs = pkgs: [ 
+        pkgs.gnutls 
+        pkgs.nettle
+      ];
+    };
+
+    zsh.enable = true;
+
+  };
 
   security.rtkit.enable = true;
 
@@ -161,12 +191,23 @@
 
   };
 
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    plasma-browser-integration
+    konsole
+    elisa
+    okular
+    kate
+    khelpcenter
+    spectacle
+  ];
+
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
     config.common.default = "*";
     extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr ];
   };
+
   # Enable Wayland support for Electron and Chromium applications
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
@@ -180,6 +221,9 @@
   };
 
   stylix.polarity = "dark";
+
+   # needed for GTK4 apps to apply custom cursor themes
+  programs.dconf.enable = true;
 
   # Enabling custom Modules for the Device(packages with configurations)
   mendiss.modules.emacs.enable = true;

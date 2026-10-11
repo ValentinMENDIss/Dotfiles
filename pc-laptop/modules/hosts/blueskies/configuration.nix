@@ -112,7 +112,7 @@
     shell = pkgs.zsh;
   };
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker.enable = false;
 
   powerManagement.cpuFreqGovernor = "performance";
 
@@ -125,6 +125,8 @@
     };
 
     niri.enable = true;
+
+    xwayland.enable = true;
 
     gamemode.enable = true;
 
@@ -186,26 +188,25 @@
   '';
 
   xdg.portal = {
-      enable = true;
-      xdgOpenUsePortal = true;
-      extraPortals = [ 
-        pkgs.xdg-desktop-portal-gtk 
-        pkgs.xdg-desktop-portal-gnome 
-      ];
-      config = {
-        common.default = [
-            "gtk"
-        ];
+    enable = true;
+    xdgOpenUsePortal = true; # Optional
 
-        niri = {
-          default = [
-            "gnome"
-            "gtk"
-          ];
-          "org.freedesktop.impl.portal.FileChooser" = "gtk";
-          "org.freedesktop.impl.portal.ScreenCast" = "gnome";
-          "org.freedesktop.impl.portal.Screenshot" = "gnome";
-        };
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+      pkgs.kdePackages.xdg-desktop-portal-kde
+    ];
+
+    config = {
+      common.default = [ "gtk" ];
+
+      niri = {
+        default = [ "gtk" ];
+        "org.freedesktop.impl.portal.FileChooser" = "gtk";
+        "org.freedesktop.impl.portal.ScreenCast" = "gnome";
+      };
+
+      kde.default = [ "kde" "gtk" ];
     };
   };
 

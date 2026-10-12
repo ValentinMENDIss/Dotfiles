@@ -1,12 +1,12 @@
 {pkgs, lib, config, ...}:
 {
-  options.mendiss.modules = {
+  options.mendiss.modules.gaming.packages = {
     heroic = {
       enable = lib.mkEnableOption "Enables Heroic Games Launcher";
     };
   };
 
-  config = lib.mkIf config.mendiss.modules.heroic.enable {
+  config = lib.mkIf config.mendiss.modules.gaming.packages.heroic.enable {
     environment.systemPackages = with pkgs; [
       (heroic.override {
         extraPkgs = pkgs': with pkgs'; [

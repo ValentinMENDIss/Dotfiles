@@ -1,12 +1,12 @@
 { lib, config, ... }:
 {
-  options.mendiss.modules = {
+  options.mendiss.modules.gaming.packages = {
     steam = {
       enable = lib.mkEnableOption "Enables Steam Module";
     };
   };
 
-  config = lib.mkIf config.mendiss.modules.steam.enable {
+  config = lib.mkIf config.mendiss.modules.gaming.packages.steam.enable {
     programs = {
       steam = {
         enable = true;

@@ -19,17 +19,6 @@
     "vm.swappiness" = 10;
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  nix = {
-    settings.auto-optimise-store = true;
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-  };
-
   security.sudo.enable = true;
 
   boot.loader.limine.enable = true;
@@ -46,33 +35,8 @@
     };
   };
 
-  time.timeZone = "Europe/Berlin";
-
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
-  };
-
   services = {
-    displayManager.sessionPackages = [ pkgs.niri ];
-
     xserver.videoDrivers = ["nvidia"];
-
-    desktopManager.plasma6.enable = true;
-
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-    };
 
     # Auto-Mount Drrives (e.g. USB Drives)
     udisks2.enable = true;
@@ -87,6 +51,7 @@
        hplipWithPlugin
      ];
     };
+
     # Provides support for auto internet discovery of printers on the network
     avahi = {
       enable = true;
@@ -94,16 +59,6 @@
       openFirewall = true;
     };
   };
-
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    plasma-browser-integration
-    konsole
-    elisa
-    okular
-    kate
-    khelpcenter
-    spectacle
-  ];
 
   users.users.mendiss = {
     isNormalUser = true;
@@ -124,10 +79,6 @@
       ];
     };
 
-    niri.enable = true;
-
-    xwayland.enable = true;
-
     gamemode.enable = true;
 
     appimage.enable = true;
@@ -142,17 +93,6 @@
     zsh.enable = true;
 
   };
-
-  security.rtkit.enable = true;
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-
 
   hardware = {
     cpu = {
@@ -187,22 +127,6 @@
     SUBSYSTEM=="hidraw", ATTRS{idVendor}=="19f5", ATTRS{idProduct}=="32f5", MODE="0660", TAG+="uaccess"
   '';
 
-  xdg.portal = {
-    enable = true;
-    xdgOpenUsePortal = true; # Optional
-
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-gnome
-      pkgs.kdePackages.xdg-desktop-portal-kde
-    ];
-
-    config = {
-      common.default = [ "gtk" ];
-      kde.default = [ "kde" "gtk" ];
-    };
-  };
-
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "nvidia";
     NIXOS_OZONE_WL = "1";
@@ -224,9 +148,27 @@
   programs.dconf.enable = true;
 
   # Enabling custom Modules for the Device(packages with configurations)
-  mendiss.modules.emacs.enable = true;
-  mendiss.modules.steam.enable = true;
-  mendiss.modules.heroic.enable = true;
+  mendiss.modules = {
+    gaming = {
+      setup.enable = true; 
+      packages = {
+        steam.enable = true;
+        heroic.enable = true;
+        minecraft.enable = true;
+      };
+    };
+
+    programming = {
+      emacs.enable = true;
+      tools.enable = true;
+    };
+
+    books.enable = true;
+    kdeConnect.enable = true;
+    threeDPrinting.enable = true;
+    photography.enable = true;
+
+  };
 
   nixpkgs.config.allowUnfree = true;
 

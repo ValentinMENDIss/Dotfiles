@@ -12,17 +12,6 @@
 
   boot.initrd.kernelModules = [ "i915" ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  nix = {
-    settings.auto-optimise-store = true;
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-  };
-
   security.sudo.enable = true;
 
   boot.loader.limine.enable = true;
@@ -39,44 +28,19 @@
     };
   };
 
-  time.timeZone = "Europe/Berlin";
-
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
-  };
-
-    services = {
-      displayManager.sessionPackages = [ pkgs.niri ];
-
-      desktopManager.plasma6.enable = true;
-
-      libinput = {
-        enable = true;
+  services = {
+    libinput = {
+      enable = true;
     
-        mouse = {
-          accelProfile = "flat";
-        };
+      mouse = {
+        accelProfile = "flat";
+      };
    
-        touchpad = {
-          clickMethod = "clickfinger";
-          tapping = false;
-        };
+      touchpad = {
+        clickMethod = "clickfinger";
+        tapping = false;
       };
-
-      displayManager.sddm = {
-        enable = true;
-        wayland.enable = true;
-      };
+    };
 
       # Auto-Mount Drrives (e.g. USB Drives)
       udisks2.enable = true;
@@ -111,13 +75,7 @@
     shell = pkgs.zsh;
   };
 
-  fonts.packages = with pkgs; [
-    comfortaa
-    helvetica-neue-lt-std
-    scientifica
-  ];
-
-  virtualisation.docker.enable = true;
+  virtualisation.docker.enable = false;
 
   powerManagement.cpuFreqGovernor = "performance";
 
@@ -128,10 +86,6 @@
           stdenv.cc.cc
         ];
     };
-
-    niri.enable = true;
-
-    xwayland.enable = true;
 
     appimage.enable = true;
     appimage.binfmt = true;
@@ -144,15 +98,6 @@
 
     zsh.enable = true;
 
-  };
-
-  security.rtkit.enable = true;
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
   };
 
   services.xserver.videoDrivers = [ "modesetting" ];
@@ -191,35 +136,6 @@
 
   };
 
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    plasma-browser-integration
-    konsole
-    elisa
-    okular
-    kate
-    khelpcenter
-    spectacle
-  ];
-
-  xdg.portal = {
-    enable = true;
-    xdgOpenUsePortal = true; # Optional
-
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-gnome
-      pkgs.kdePackages.xdg-desktop-portal-kde
-    ];
-
-    config = {
-      common.default = [ "gtk" ];
-      kde.default = [ "kde" "gtk" ];
-    };
-  };      
-
-  # Enable Wayland support for Electron and Chromium applications
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
   stylix.enable = true;
 
   stylix.targets.plymouth.enable = false;
@@ -235,8 +151,27 @@
   programs.dconf.enable = true;
 
   # Enabling custom Modules for the Device(packages with configurations)
-  mendiss.modules.emacs.enable = true;
-  mendiss.modules.steam.enable = true;
+  mendiss.modules = {
+    gaming = {
+      setup.enable = false; 
+      packages = {
+        steam.enable = true;
+        heroic.enable = false;
+        minecraft.enable = false;
+      };
+    };
+
+    programming = {
+      emacs.enable = true;
+      tools.enable = true;
+    };
+
+    books.enable = true;
+    kdeConnect.enable = true;
+    threeDPrinting.enable = true;
+    photography.enable = true;
+
+  };
 
   nixpkgs.config.allowUnfree = true;
 

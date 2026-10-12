@@ -1,6 +1,6 @@
 {
   imports = [
     ./emacs.nix
-    ./programming-tools.nix
+    ./programmingTools.nix
   ];
 }

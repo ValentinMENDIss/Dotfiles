@@ -213,8 +213,9 @@
   stylix.targets.plymouth.enable = false;
 
   stylix.image = pkgs.fetchurl {
-    url = "https://live.staticflickr.com/65535/55582885743_d51ff8f4ae_b.jpg";
-    hash = "sha256-o0dmivQJURcdKZvtCEp5m8ZCTp7dCt7rG6Ub3WIvAMw=";
+    name = "wallpaper.png";
+    url = "https://www.flickr.com/photo_download.gne?size=o&id=55582885743&secret=d852d5e115";
+    hash = "sha256-xtkQ7ZZd+fHBFf5gxQgqZKO7ABboJo5ooOzWaxxkIYs=";
   };
 
   stylix.polarity = "dark";

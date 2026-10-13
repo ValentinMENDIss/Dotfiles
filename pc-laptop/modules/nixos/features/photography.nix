@@ -11,9 +11,13 @@
     nixpkgs.overlays = [ inputs.lightcraft.overlays.default ];
 
     environment.systemPackages = [
-      pkgs.geeqie
-      pkgs.rawtherapee
+      # probably will remove later; (tried to use for fun :D)
       pkgs.lightcraft
+
+      # raw image editor based on rawtherapee
+      pkgs.art
+      # catalog for / viewer of images
+      pkgs.digikam
     ];
   };
 

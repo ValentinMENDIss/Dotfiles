@@ -64,10 +64,6 @@
       };
     };
 
-
-  # Ensures that the "greeter" user has permission to use video devices
-  users.extraUsers.greeter.extraGroups = [ "video" "input" ];
-
   users.users.mendiss = {
     isNormalUser = true;
     description = "mendiss";
@@ -169,7 +165,7 @@
     books.enable = true;
     kdeConnect.enable = true;
     threeDPrinting.enable = true;
-    photography.enable = true;
+    photography.enable = false;
 
   };
 

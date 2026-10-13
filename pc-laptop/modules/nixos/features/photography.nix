@@ -14,8 +14,8 @@
       # probably will remove later; (tried to use for fun :D)
       pkgs.lightcraft
 
-      # raw image editor based on rawtherapee
-      pkgs.art
+      # raw image editor
+      pkgs.darktable
       # catalog for / viewer of images
       pkgs.digikam
     ];

@@ -165,7 +165,7 @@
     books.enable = true;
     kdeConnect.enable = true;
     threeDPrinting.enable = true;
-    photography.enable = false;
+    photography.enable = true;
 
   };
 

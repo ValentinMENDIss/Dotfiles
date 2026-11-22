@@ -35,6 +35,12 @@
       spectacle
     ];
 
+    systemPackages = with pkgs; [
+      # Packages required for Screenshot and Screen-sharing capability
+      grim
+      slurp
+    ];
+
     # Enable Wayland support for Electron and Chromium applications
     sessionVariables.NIXOS_OZONE_WL = "1";
 

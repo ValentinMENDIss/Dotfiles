@@ -3,7 +3,7 @@
 {
   environment.systemPackages = with pkgs; [ 
     # File Manager
-    dolphin
+    kdePackages.dolphin
 
     # For general HEIF container support (this includes the AVIF file format) 
     libheif.bin # provides heif-thumbnailer (the program that generates HEIF thumbnails)
@@ -21,7 +21,7 @@
     kdePackages.kio-extras
     kdePackages.kimageformats
     # support for icons
-            kdePackages.qtsvg
+    kdePackages.qtsvg
   ];
   # All of the thumbnailers are created in '/run/current-system/sw/share/thumbnailers'
 

@@ -1,27 +1,27 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = [ 
+  environment.systemPackages = with pkgs; [ 
     # File Manager
-    pkgs.dolphin
+    dolphin
 
     # For general HEIF container support (this includes the AVIF file format) 
-    pkgs.libheif.bin # provides heif-thumbnailer (the program that generates HEIF thumbnails)
-    pkgs.libheif.out # provides heif.thumbnailer (allows for the viewing of HEIF thumbnails)
+    libheif.bin # provides heif-thumbnailer (the program that generates HEIF thumbnails)
+    libheif.out # provides heif.thumbnailer (allows for the viewing of HEIF thumbnails)
     
     # For JXL(JPEG XL) support
-    pkgs.libjxl
+    libjxl
     
     # For WebP support
-    pkgs.webp-pixbuf-loader
+    webp-pixbuf-loader
     
     # For 3D-Model files support
-    pkgs.f3d
+    f3d
                 
-    pkgs.kdePackages.kio-extras
-    pkgs.kdePackages.kimageformats
+    kdePackages.kio-extras
+    kdePackages.kimageformats
     # support for icons
-    pkgs.kdePackages.qtsvg
+            kdePackages.qtsvg
   ];
   # All of the thumbnailers are created in '/run/current-system/sw/share/thumbnailers'
 

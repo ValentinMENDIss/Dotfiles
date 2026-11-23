@@ -27,9 +27,6 @@
     libresprite
     libreoffice
 
-    kdePackages.dolphin
-    kdePackages.qtsvg
-
     lutris
   ];
 }
